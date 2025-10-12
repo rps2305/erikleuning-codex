@@ -11,7 +11,7 @@ const NAV_ITEMS = [
   { id: 'visie', label: 'Visie', href: '#visie' },
   { id: 'werkgebied', label: 'Werkgebied', href: '#werkgebied' },
   { id: 'contact', label: 'Contact', href: '#contact' },
-  { id: 'privacy', label: 'Privacy', href: '/privacyverklaring.html' }
+  { id: 'privacy', label: 'Privacy', href: 'privacyverklaring.html' }
 ];
 
 const prefersDark = () => window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
