@@ -1,6 +1,5 @@
 import Alpine from 'alpinejs';
 import '../styles/tailwind.css';
-import './form.js';
 import { initWerkgebiedMap } from './map.js';
 
 const STORAGE_KEY = 'erikleuning-theme';

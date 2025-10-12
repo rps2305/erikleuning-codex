@@ -32,7 +32,7 @@
         }
       })();
     </script>
-    <script type="module" crossorigin src="/assets/main-D9WZIdLy.js"></script>
+    <script type="module" crossorigin src="/assets/main-CsHa2v5N.js"></script>
     <link rel="stylesheet" crossorigin href="/assets/main-CQ5UTd7o.css">
   </head>
   <body class="min-h-full bg-slate-50 text-slate-800 transition-colors dark:bg-slate-900 dark:text-slate-100">
@@ -337,34 +337,9 @@
       <section id="contact" data-section="contact" class="page-section" aria-labelledby="contact-title">
         <div class="card" style="display: grid; gap: 1.2rem;">
           <h2 id="contact-title">Contact</h2>
-          <p>Als u de indruk heeft dat uw persoonsgegevens niet goed beveiligd zijn of er aanwijzingen zijn van misbruik, neem dan contact met mij op via erik@erikleuning.nl.</p>
-          <p>U kunt een verzoek tot inzage, correctie of verwijdering sturen naar erik@erikleuning.nl.</p>
+          <p>Als u de indruk heeft dat uw persoonsgegevens niet goed beveiligd zijn of er aanwijzingen zijn van misbruik, neem dan contact met mij op via <a href="mailto:erik@erikleuning.nl" class="focus-ring">erik@erikleuning.nl</a>.</p>
+          <p>U kunt een verzoek tot inzage, correctie of verwijdering sturen naar hetzelfde e-mailadres of telefonisch contact opnemen via <a href="tel:+31630516464" class="focus-ring">06-30516464</a>.</p>
           <p>VAN KWETSBAARHEID NAAR ZELFREDZAAMHEID/ZELFSTANDIGHEID!</p>
-          <form x-data="contactForm()" @submit.prevent="handleSubmit($event)" name="contact" method="post" data-netlify="true" netlify-honeypot="onderwerp" class="card" style="display: grid; gap: 1.2rem;">
-            <input type="hidden" name="form-name" value="contact" />
-            <p class="hidden">
-              <label>Onderwerp <input name="onderwerp" /></label>
-            </p>
-            <template x-if="alert">
-              <div class="alert" role="alert">
-                <svg class="mt-0.5 h-5 w-5 flex-none" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6m0 4h.01M21 12A9 9 0 113 12a9 9 0 0118 0z"/></svg>
-                <p x-text="consentMessage"></p>
-              </div>
-            </template>
-            <div style="display: grid; gap: 0.75rem;">
-              <label for="naam" class="site-brand__subtitle" style="font-weight: 600;">Voor- en achternaam</label>
-              <input id="naam" name="naam" type="text" x-model="naam" @blur="handleBlur('naam')" :class="['focus-ring', 'w-full rounded-2xl border bg-white/85 px-4 py-3 text-base text-slate-900 transition dark:border-slate-700 dark:bg-slate-900/60 dark:text-slate-100', touched.naam && !isNaamValid ? 'border-red-500' : 'border-slate-200']" required />
-            </div>
-            <div style="display: grid; gap: 0.75rem;">
-              <label for="email" class="site-brand__subtitle" style="font-weight: 600;">E-mailadres</label>
-              <input id="email" name="email" type="email" x-model="email" @blur="handleBlur('email')" :class="['focus-ring', 'w-full rounded-2xl border bg-white/85 px-4 py-3 text-base text-slate-900 transition dark:border-slate-700 dark:bg-slate-900/60 dark:text-slate-100', touched.email && !isEmailValid ? 'border-red-500' : 'border-slate-200']" required />
-            </div>
-            <div style="display: grid; gap: 0.75rem;">
-              <label for="bericht" class="site-brand__subtitle" style="font-weight: 600;">Mogelijke privé-informatie</label>
-              <textarea id="bericht" name="bericht" rows="6" x-model="bericht" @blur="handleBlur('bericht')" :class="['focus-ring', 'w-full rounded-2xl border bg-white/85 px-4 py-3 text-base text-slate-900 transition dark:border-slate-700 dark:bg-slate-900/60 dark:text-slate-100', touched.bericht && !isBerichtValid ? 'border-red-500' : 'border-slate-200']" required></textarea>
-            </div>
-            <button type="submit" class="btn" style="justify-self: start;">Contact via website</button>
-          </form>
         </div>
       </section>
     </main>
