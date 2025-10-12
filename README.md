@@ -53,7 +53,7 @@ De sitemap komt in `public/sitemap.xml` terecht en wordt door `robots.txt` opgep
 - HTML-pagina's staan in `src/pages/`. De website bestaat uit één hoofdpagina (`index.html`) met anchors voor alle secties en een aparte disclaimer/privacy-pagina (`privacyverklaring.html`). Beide gebruiken HTML-include commentaren om `src/partials/header.html`, `footer.html` en `breadcrumbs.html` in te voegen.
 - Aanpassingen aan navigatie-items gebeuren in `src/js/main.js` (store) en worden automatisch doorgezet naar header en footer.
 - JSON-LD-partials bevinden zich in `schemas/` en krijgen data mee via de include-syntax.
-- Contactformuliervalidatie en thematoggle zijn gedefinieerd in `src/js/main.js` en `src/js/form.js`.
+- Extra JavaScript staat in `src/js/`. `main.js` initialiseert Alpine.js, thema-toggle, navigatie en de Leaflet-kaart.
 
 ## Deploy
 
@@ -68,3 +68,25 @@ Deze repository bevat een workflow (`.github/workflows/deploy.yml`) die bij elke
 2. Commit en push de laatste wijzigingen naar `main`.
 3. De workflow bouwt automatisch met `npm run build` en publiceert de inhoud van `dist/`.
 4. De `vite.config.js` past de `base` dynamisch aan, dus de site wordt geserveerd onder `https://<gebruikersnaam>.github.io/<repo>/` zonder extra configuratie.
+
+## Andere hostingopties
+
+Omdat `npm run build` een volledig statische output oplevert, kan de website op elke statische webserver worden geplaatst:
+
+1. Bouw de site lokaal:
+   ```bash
+   npm run build
+   ```
+2. Upload de inhoud van de map `dist/` naar je server (bijvoorbeeld via FTP/SFTP, rsync of een CI/CD-pipeline).
+3. Zorg dat de server `index.html` als standaardbestand serveert en dat `privacyverklaring.html` in dezelfde map staat.
+4. Host je de site in een submap (bv. `https://domein.nl/site/`), stel dan tijdens het builden `GITHUB_REPOSITORY` of `VITE_BASE_PATH` in zodat Vite de juiste `base` gebruikt:
+   ```bash
+   VITE_BASE_PATH=/site/ npm run build
+   ```
+   of configureer een eigen environment variabele en lees die in `vite.config.js` uit.
+
+Voor previews op een andere server kun je ook de output lokaal testen met:
+```bash
+npm run preview
+```
+Dit start een statische server op basis van de gegenereerde `dist/`-map.

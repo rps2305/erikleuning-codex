@@ -5,8 +5,24 @@ import { readdirSync, readFileSync } from 'node:fs';
 const rootDir = resolve(__dirname, 'src/pages');
 const pageFiles = readdirSync(rootDir).filter((file) => file.endsWith('.html'));
 
+function normalizeBase(path) {
+  if (!path) {
+    return '';
+  }
+  let value = String(path).trim();
+  if (!value.startsWith('/')) {
+    value = `/${value}`;
+  }
+  if (!value.endsWith('/')) {
+    value = `${value}/`;
+  }
+  return value;
+}
+
+const customBase = normalizeBase(process.env.VITE_BASE_PATH);
 const repoName = process.env.GITHUB_REPOSITORY ? process.env.GITHUB_REPOSITORY.split('/')[1] : '';
-const basePath = process.env.GITHUB_ACTIONS && repoName ? `/${repoName}/` : '/';
+const githubBase = process.env.GITHUB_ACTIONS && repoName ? `/${repoName}/` : '/';
+const basePath = customBase || githubBase;
 
 const inputEntries = pageFiles.reduce((entries, file) => {
   entries[file.replace(/\.html$/, '')] = resolve(rootDir, file);
