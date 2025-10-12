@@ -45,8 +45,8 @@
           <picture>
             <img
               src="/images/zorgondernemers-twente_logo-425.webp"
-              width="140"
-              height="64"
+              width="142"
+              height="48"
               loading="lazy"
               decoding="async"
               alt="logo Coöperatie Zorgondernemers Twente" />
@@ -66,9 +66,9 @@
   </div>
 </footer>
 
-<div x-data="cookieBanner()" x-cloak x-show="open" x-transition.opacity.duration.200ms class="cookie-banner" role="dialog" aria-live="polite">
+<div x-data="cookieBanner()" x-cloak x-show="open" x-transition.opacity.duration.200ms class="cookie-banner" role="dialog" aria-live="polite" aria-label="Cookie melding" aria-describedby="cookie-banner-description">
   <div class="cookie-banner__inner">
-    <p>Deze site gebruikt uitsluitend functionele cookies om de werking van de website te ondersteunen. Er worden geen persoonsgegevens gedeeld met derden.</p>
+    <p id="cookie-banner-description">Deze site gebruikt uitsluitend functionele cookies om de werking van de website te ondersteunen. Er worden geen persoonsgegevens gedeeld met derden.</p>
     <div class="cookie-actions">
       <button type="button" class="btn" @click="accept">Accepteren</button>
       <button type="button" class="cookie-decline focus-ring" @click="decline">Weigeren</button>
