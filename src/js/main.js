@@ -1,6 +1,5 @@
 import Alpine from 'alpinejs';
 import '../styles/tailwind.css';
-import { initWerkgebiedMap } from './map.js';
 
 const STORAGE_KEY = 'erikleuning-theme';
 const NAV_ITEMS = [
@@ -194,12 +193,6 @@ window.Alpine = Alpine;
 
 Alpine.start();
 
-const hydrateWerkgebiedMap = () => {
-  if (document.getElementById('werkgebied-kaart')) {
-    initWerkgebiedMap();
-  }
-};
-
 const hydrateEmailLinks = () => {
   const elements = document.querySelectorAll('[data-email-user][data-email-domain][data-email-tld]');
   elements.forEach((el) => {
@@ -223,10 +216,8 @@ const hydrateEmailLinks = () => {
 
 if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', () => {
-    hydrateWerkgebiedMap();
     hydrateEmailLinks();
   }, { once: true });
 } else {
-  hydrateWerkgebiedMap();
   hydrateEmailLinks();
 }

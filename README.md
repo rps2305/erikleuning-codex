@@ -53,7 +53,7 @@ De sitemap komt in `public/sitemap.xml` terecht en wordt door `robots.txt` opgep
 - HTML-pagina's staan in `src/pages/`. De website bestaat uit één hoofdpagina (`index.html`) met anchors voor alle secties en een aparte disclaimer/privacy-pagina (`privacyverklaring.html`). Beide gebruiken HTML-include commentaren om `src/partials/header.html`, `footer.html` en `breadcrumbs.html` in te voegen.
 - Aanpassingen aan navigatie-items gebeuren in `src/js/main.js` (store) en worden automatisch doorgezet naar header en footer.
 - JSON-LD-partials bevinden zich in `schemas/` en krijgen data mee via de include-syntax.
-- Extra JavaScript staat in `src/js/`. `main.js` initialiseert Alpine.js, thema-toggle, navigatie en de Leaflet-kaart.
+- Extra JavaScript staat in `src/js/`. `main.js` initialiseert Alpine.js, thema-toggle, navigatie en de e-mailobfuscatie.
 
 ## Deploy
 
