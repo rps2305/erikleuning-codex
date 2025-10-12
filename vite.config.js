@@ -21,8 +21,16 @@ function normalizeBase(path) {
 
 const customBase = normalizeBase(process.env.VITE_BASE_PATH);
 const repoName = process.env.GITHUB_REPOSITORY ? process.env.GITHUB_REPOSITORY.split('/')[1] : '';
-const githubBase = process.env.GITHUB_ACTIONS && repoName ? `/${repoName}/` : '/';
-const basePath = customBase || githubBase;
+const defaultBase = './';
+let basePath = defaultBase;
+
+if (process.env.GITHUB_ACTIONS && repoName) {
+  basePath = `/${repoName}/`;
+}
+
+if (customBase) {
+  basePath = customBase;
+}
 
 const inputEntries = pageFiles.reduce((entries, file) => {
   entries[file.replace(/\.html$/, '')] = resolve(rootDir, file);
