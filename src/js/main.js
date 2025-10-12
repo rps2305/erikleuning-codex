@@ -200,8 +200,33 @@ const hydrateWerkgebiedMap = () => {
   }
 };
 
+const hydrateEmailLinks = () => {
+  const elements = document.querySelectorAll('[data-email-user][data-email-domain][data-email-tld]');
+  elements.forEach((el) => {
+    const user = el.getAttribute('data-email-user');
+    const domain = el.getAttribute('data-email-domain');
+    const tld = el.getAttribute('data-email-tld');
+    if (!user || !domain || !tld) {
+      return;
+    }
+    const email = `${user}@${domain}.${tld}`;
+    if (el.tagName === 'A') {
+      el.setAttribute('href', `mailto:${email}`);
+      if (!el.textContent.trim() || el.textContent.includes('[at]')) {
+        el.textContent = email;
+      }
+    } else {
+      el.textContent = email;
+    }
+  });
+};
+
 if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', hydrateWerkgebiedMap, { once: true });
+  document.addEventListener('DOMContentLoaded', () => {
+    hydrateWerkgebiedMap();
+    hydrateEmailLinks();
+  }, { once: true });
 } else {
   hydrateWerkgebiedMap();
+  hydrateEmailLinks();
 }
