@@ -73,7 +73,7 @@ Deze repository bevat een workflow (`.github/workflows/deploy.yml`) die bij elke
 
 Omdat `npm run build` een volledig statische output oplevert, kan de website op elke statische webserver worden geplaatst:
 
-1. Bouw de site lokaal:
+1. Bouw de site lokaal (de standaard build gebruikt een relatieve `./` base, dus werkt ook vanuit een submap):
    ```bash
    npm run build
    ```

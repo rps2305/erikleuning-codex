@@ -140,7 +140,7 @@ Alpine.data('siteHeader', (currentPage) => ({
     if (item.href.startsWith('#')) {
       if (this.pagina !== 'home') {
         event.preventDefault();
-        window.location.href = `/index.html${item.href}`;
+        window.location.href = `index.html${item.href}`;
         return;
       }
       event.preventDefault();
