@@ -99,6 +99,11 @@ h3 {
   font-size: clamp(1.5rem, 1.3rem + 0.5vw, 1.9rem);
 }
 
+p {
+  margin-top: 0;
+  margin-bottom: 0.75em;
+}
+
 .btn {
   display: inline-flex;
   align-items: center;
@@ -116,6 +121,7 @@ h3 {
 .btn:hover {
   transform: translateY(-2px);
   box-shadow: 0 30px 55px -20px rgba(13, 126, 163, 0.75);
+  color: #ffffff;
 }
 
 .dark .btn {
@@ -124,7 +130,7 @@ h3 {
 }
 
 .dark .btn:hover {
-  color: #022c22;
+  color: #ffffff;
 }
 
 .badge {
@@ -496,10 +502,11 @@ h3 {
 .image-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 1.5rem;
+  gap: clamp(0.9rem, 0.7rem + 0.4vw, 1.2rem);
 }
 
 .image-grid figure {
+  margin: 0;
   border-radius: 1.5rem;
   overflow: hidden;
   background-color: rgba(255, 255, 255, 0.8);
@@ -537,8 +544,8 @@ h3 {
 
 .page-section {
   display: grid;
-  gap: clamp(1.8rem, 1.2rem + 1.2vw, 2.6rem);
-  margin-block: clamp(2.8rem, 2.2rem + 1.4vw, 4rem);
+  gap: clamp(1.26rem, 0.84rem + 0.84vw, 1.82rem);
+  margin-block: clamp(1.96rem, 1.54rem + 0.98vw, 2.8rem);
 }
 
 .responsive-two-column {
@@ -549,7 +556,10 @@ h3 {
 @media (min-width: 960px) {
   .responsive-two-column {
     grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-    align-items: center;
+    align-items: stretch;
+  }
+  .responsive-two-column > .card {
+    align-self: stretch;
   }
 }
 
@@ -645,6 +655,35 @@ h3 {
   font-weight: 700;
   color: var(--text);
   margin-bottom: 0.8rem;
+}
+
+.site-footer__accessibility {
+  border-radius: 1.6rem;
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(148, 163, 184, 0.28);
+  padding: clamp(1.4rem, 1.1rem + 0.8vw, 1.9rem);
+  display: grid;
+  gap: 0.6rem;
+}
+
+.dark .site-footer__accessibility {
+  background: rgba(15, 23, 42, 0.88);
+  border-color: rgba(94, 234, 212, 0.22);
+}
+
+.site-footer__accessibility h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.site-footer__accessibility p {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+}
+
+.dark .site-footer__accessibility p {
+  color: #e2e8f0;
 }
 
 .site-footer__nav,
@@ -779,6 +818,24 @@ h3 {
   gap: clamp(1rem, 0.8rem + 1vw, 1.6rem);
 }
 
+.about-figure {
+  border-radius: 1.8rem;
+  overflow: hidden;
+  box-shadow: 0 28px 60px -26px rgba(13, 126, 163, 0.35);
+}
+
+.about-figure,
+.about-figure picture {
+  display: block;
+  margin: 0;
+}
+
+.about-figure img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
 .about-highlight__meta {
   display: flex;
   flex-wrap: wrap;
@@ -833,16 +890,32 @@ h3 {
 
 .signature-card {
   border-radius: 1.8rem;
-  padding: clamp(1.6rem, 1.2rem + 1.2vw, 2.4rem);
-  background: linear-gradient(135deg, rgba(13, 126, 163, 0.1) 0%, rgba(15, 23, 42, 0.08) 100%);
-  border: 1px solid rgba(13, 126, 163, 0.2);
+  padding: clamp(1.8rem, 1.4rem + 1vw, 2.6rem);
+  background-color: var(--surface);
+  border: 1px solid rgba(148, 163, 184, 0.25);
   display: grid;
   gap: 1rem;
+  position: relative;
+  overflow: hidden;
 }
 
 .dark .signature-card {
-  background: linear-gradient(135deg, rgba(15, 118, 110, 0.12) 0%, rgba(8, 47, 73, 0.12) 100%);
+  background-color: rgba(15, 23, 42, 0.92);
   border-color: rgba(94, 234, 212, 0.2);
+}
+
+.signature-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at top right, rgba(13, 126, 163, 0.12), transparent 55%);
+  opacity: 0;
+  transition: opacity 200ms ease;
+  pointer-events: none;
+}
+
+.signature-card:hover::before {
+  opacity: 1;
 }
 
 .privacy-hero {
