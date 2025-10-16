@@ -1,7 +1,7 @@
 <header x-data="siteHeader('{{ currentPage }}')" class="site-header">
   <a href="#inhoud" class="skip-link">Overslaan en naar de inhoud gaan</a>
   <div class="site-header__container">
-    <a href="index.html" class="site-brand focus-ring">
+    <a href="./" class="site-brand focus-ring">
       <picture style="width: 4.25rem; height: 4.25rem; overflow: hidden; border-radius: 999px; border: 1px solid rgba(148, 163, 184, 0.35); display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.9);">
         <img
           src="images/logo256x256-256.webp"
@@ -26,6 +26,19 @@
           x-text="item.label"
           @click="navigate($event, item)"></a>
       </template>
+      <button
+        type="button"
+        class="primary-nav__link focus-ring desktop-theme-toggle"
+        @click="toggleTheme"
+        :aria-pressed="isDark"
+        aria-label="Thema wisselen">
+        <template x-if="!isDark">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2m0 14v2m9-9h-2M5 12H3m15.364-6.364l-1.414 1.414M7.05 16.95 5.636 18.364M18.364 18.364 16.95 16.95M7.05 7.05 5.636 5.636M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+        </template>
+        <template x-if="isDark">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12.79A9 9 0 1111.21 3 7.5 7.5 0 0021 12.79z"/></svg>
+        </template>
+      </button>
     </nav>
     <div style="display: flex; align-items: center; gap: 0.75rem;">
       <button type="button" class="mobile-toggle focus-ring" @click="toggleTheme" :aria-pressed="isDark" aria-label="Thema wisselen">
@@ -55,8 +68,5 @@
         x-text="item.label"
         @click="navigate($event, item)"></a>
     </template>
-    <button type="button" class="btn" style="justify-content: center;" @click="toggleTheme" :aria-pressed="isDark">
-      <span x-text="isDark ? 'Gebruik licht thema' : 'Gebruik donker thema'"></span>
-    </button>
   </div>
 </header>

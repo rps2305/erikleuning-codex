@@ -6,16 +6,19 @@
     <title>Erik Leuning – Begeleiding en Ondersteuning – Oldenzaal</title>
     <meta name="description" content="Plan een kennismaking met Erik Leuning voor persoonlijke begeleiding in Oldenzaal en Twente. Praktische ondersteuning richting zelfstandigheid met vertrouwde zorg." />
     <link rel="canonical" href="https://www.erikleuning.nl/" />
+    <meta itemprop="name" content="Erik Leuning – Begeleiding en Ondersteuning – Oldenzaal" />
+    <meta itemprop="description" content="Plan een kennismaking met Erik Leuning voor persoonlijke begeleiding in Oldenzaal en Twente. Praktische ondersteuning richting zelfstandigheid met vertrouwde zorg." />
+    <meta itemprop="image" content="https://www.erikleuning.nl/images/header-erik-leuning-1024.webp" />
     <meta property="og:locale" content="nl_NL" />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Erik Leuning – Begeleiding en Ondersteuning" />
     <meta property="og:title" content="Erik Leuning – Begeleiding en Ondersteuning – Oldenzaal" />
-    <meta property="og:description" content="Van kwetsbaarheid naar zelfredzaamheid en zelfstandigheid. Staat voor individuele begeleiding van een specifieke hulpvraag; over het algemeen in de eigen omgeving. Begeleiding vanuit PGB en ZIN en particulier; ook in te huren door instellingen. Aangesloten bij Coöperatie Zorgondernemers Twente" />
+    <meta property="og:description" content="Plan een kennismaking met Erik Leuning voor persoonlijke begeleiding in Oldenzaal en Twente. Praktische ondersteuning richting zelfstandigheid met vertrouwde zorg." />
     <meta property="og:url" content="https://www.erikleuning.nl/" />
     <meta property="og:image" content="https://www.erikleuning.nl/images/header-erik-leuning-1024.webp" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Erik Leuning – Begeleiding en Ondersteuning – Oldenzaal" />
-    <meta name="twitter:description" content="Van kwetsbaarheid naar zelfredzaamheid en zelfstandigheid. Staat voor individuele begeleiding van een specifieke hulpvraag; over het algemeen in de eigen omgeving. Begeleiding vanuit PGB en ZIN en particulier; ook in te huren door instellingen. Aangesloten bij Coöperatie Zorgondernemers Twente" />
+    <meta name="twitter:description" content="Plan een kennismaking met Erik Leuning voor persoonlijke begeleiding in Oldenzaal en Twente. Praktische ondersteuning richting zelfstandigheid met vertrouwde zorg." />
     <meta name="twitter:image" content="https://www.erikleuning.nl/images/header-erik-leuning-1024.webp" />
     <link rel="icon" href="favicon.ico" sizes="any" />
     <link rel="manifest" href="site.webmanifest" />
@@ -33,14 +36,14 @@
         }
       })();
     </script>
-    <script type="module" crossorigin src="./assets/main-bX014BFD.js"></script>
-    <link rel="stylesheet" crossorigin href="./assets/main-D77x76bZ.css">
+    <script type="module" crossorigin src="./assets/main-B4fndoTe.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/main-CHu3g1MH.css">
   </head>
   <body class="min-h-full bg-slate-50 text-slate-800 transition-colors dark:bg-slate-900 dark:text-slate-100">
     <header x-data="siteHeader('home')" class="site-header">
   <a href="#inhoud" class="skip-link">Overslaan en naar de inhoud gaan</a>
   <div class="site-header__container">
-    <a href="index.html" class="site-brand focus-ring">
+    <a href="./" class="site-brand focus-ring">
       <picture style="width: 4.25rem; height: 4.25rem; overflow: hidden; border-radius: 999px; border: 1px solid rgba(148, 163, 184, 0.35); display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.9);">
         <img
           src="images/logo256x256-256.webp"
@@ -65,6 +68,19 @@
           x-text="item.label"
           @click="navigate($event, item)"></a>
       </template>
+      <button
+        type="button"
+        class="primary-nav__link focus-ring desktop-theme-toggle"
+        @click="toggleTheme"
+        :aria-pressed="isDark"
+        aria-label="Thema wisselen">
+        <template x-if="!isDark">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2m0 14v2m9-9h-2M5 12H3m15.364-6.364l-1.414 1.414M7.05 16.95 5.636 18.364M18.364 18.364 16.95 16.95M7.05 7.05 5.636 5.636M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+        </template>
+        <template x-if="isDark">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12.79A9 9 0 1111.21 3 7.5 7.5 0 0021 12.79z"/></svg>
+        </template>
+      </button>
     </nav>
     <div style="display: flex; align-items: center; gap: 0.75rem;">
       <button type="button" class="mobile-toggle focus-ring" @click="toggleTheme" :aria-pressed="isDark" aria-label="Thema wisselen">
@@ -94,9 +110,6 @@
         x-text="item.label"
         @click="navigate($event, item)"></a>
     </template>
-    <button type="button" class="btn" style="justify-content: center;" @click="toggleTheme" :aria-pressed="isDark">
-      <span x-text="isDark ? 'Gebruik licht thema' : 'Gebruik donker thema'"></span>
-    </button>
   </div>
 </header>
 
