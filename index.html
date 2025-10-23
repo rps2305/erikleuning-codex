@@ -8,18 +8,18 @@
     <link rel="canonical" href="https://www.erikleuning.nl/" />
     <meta itemprop="name" content="Erik Leuning – Begeleiding en Ondersteuning – Oldenzaal" />
     <meta itemprop="description" content="Persoonlijke begeleiding in Oldenzaal en Twente voor meer zelfstandigheid. Plan een kennismaking met Erik Leuning voor vertrouwde zorg en praktische ondersteuning." />
-    <meta itemprop="image" content="https://www.erikleuning.nl/images/header-erik-leuning-1024.webp" />
+    <meta itemprop="image" content="https://www.erikleuning.nl/images/social-card-1200x630.webp" />
     <meta property="og:locale" content="nl_NL" />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Erik Leuning – Begeleiding en Ondersteuning" />
     <meta property="og:title" content="Erik Leuning – Begeleiding en Ondersteuning – Oldenzaal" />
     <meta property="og:description" content="Persoonlijke begeleiding in Oldenzaal en Twente voor meer zelfstandigheid. Plan een kennismaking met Erik Leuning voor vertrouwde zorg en praktische ondersteuning." />
     <meta property="og:url" content="https://www.erikleuning.nl/" />
-    <meta property="og:image" content="https://www.erikleuning.nl/images/header-erik-leuning-1024.webp" />
+    <meta property="og:image" content="https://www.erikleuning.nl/images/social-card-1200x630.webp" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Erik Leuning – Begeleiding en Ondersteuning – Oldenzaal" />
     <meta name="twitter:description" content="Persoonlijke begeleiding in Oldenzaal en Twente voor meer zelfstandigheid. Plan een kennismaking met Erik Leuning voor vertrouwde zorg en praktische ondersteuning." />
-    <meta name="twitter:image" content="https://www.erikleuning.nl/images/header-erik-leuning-1024.webp" />
+    <meta name="twitter:image" content="https://www.erikleuning.nl/images/social-card-1200x630.webp" />
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-58599156-1"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -56,17 +56,16 @@
   <a href="#inhoud" class="skip-link">Overslaan en naar de inhoud gaan</a>
   <div class="site-header__container">
     <a href="./" class="site-brand focus-ring">
-      <picture style="width: 4.25rem; height: 4.25rem; overflow: hidden; border-radius: 999px; border: 1px solid rgba(148, 163, 184, 0.35); display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.9);">
+      <picture class="brand-avatar">
         <img
           src="images/logo256x256-256.webp"
           width="128"
           height="128"
           loading="lazy"
           decoding="async"
-          alt="Home"
-          style="width: 100%; height: 100%; object-fit: contain;" />
+          alt="Home" />
       </picture>
-      <span style="display: flex; flex-direction: column; gap: 0.15rem;">
+      <span class="brand-stack">
         <span class="site-brand__title">Erik Leuning</span>
         <span class="site-brand__subtitle">Begeleiding en Ondersteuning</span>
       </span>
@@ -94,7 +93,7 @@
         </template>
       </button>
     </nav>
-    <div style="display: flex; align-items: center; gap: 0.75rem;">
+    <div class="header-actions">
       <button type="button" class="mobile-toggle focus-ring" @click="toggleTheme" :aria-pressed="isDark" aria-label="Thema wisselen">
         <template x-if="!isDark">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2m0 14v2m9-9h-2M5 12H3m15.364-6.364l-1.414 1.414M7.05 16.95 5.636 18.364M18.364 18.364 16.95 16.95M7.05 7.05 5.636 5.636M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
@@ -172,16 +171,16 @@
       <section class="page-section" aria-labelledby="begeleiding-in-beeld">
         <h2 id="begeleiding-in-beeld">Begeleiding in beeld</h2>
         <div class="stat-cards">
-          <article class="card" style="display: grid; gap: 1rem;">
+          <article class="card card-grid">
             <h3>Biedt hulp bij</h3>
-            <ul style="display: grid; gap: 0.55rem;">
+            <ul class="card-grid-tight">
               <li>Aanleren praktische (zelfstandigheids)vaardigheden</li>
               <li>Leren bewuste keuzes te maken</li>
               <li>Inzicht krijgen in oorzaak en gevolg</li>
               <li>Vergroten zelfvertrouwen</li>
             </ul>
           </article>
-          <article class="card" style="display: grid; gap: 1rem;">
+          <article class="card card-grid">
             <h3>Meer dan twintig jaar ervaring</h3>
             <p>MBO-geschoold en het vak in de praktijk geleerd tijdens begeleiding van vele jongeren/(jong)volwassenen in de loop der jaren (20+). Theoretische kennis vergroot door diverse trainingen en cursussen, waaronder BHV, middelengebruik, ABC-training en psychologie.</p>
             <p>Geen verzorging/verpleging.</p>
@@ -246,7 +245,7 @@
       </section>
 
       <section id="doelgroep" data-section="doelgroep" class="page-section">
-        <div class="card" style="display: grid; gap: 1.2rem;">
+        <div class="card card-grid-relaxed">
           <h2>Doelgroep</h2>
           <p>Ik richt mij hoofdzakelijk op kwetsbare jongeren en (jong-)volwassenen (18-35), die geholpen willen/moeten worden om zich staande te kunnen houden in de maatschappij. Bovengenoemde leeftijdscategorie is uiteraard niet bindend; in een persoonlijk gesprek kan altijd besproken worden of er mogelijkheden voor specifieke begeleiding zijn.</p>
           <p>Inzicht geven in de ervaren problematiek en het omzetten van probleemervaringen in de dagelijkse activiteiten naar het aanleren van doelgerichte vaardigheden, staan in mijn begeleiding centraal. Begeleiding/ondersteuning in het zelfstandig functioneren in de breedst mogelijke zin van het woord.</p>
@@ -258,7 +257,7 @@
 
       <section id="werkwijze" data-section="werkwijze" class="page-section">
         <div class="responsive-two-column">
-          <div class="card" style="display: grid; gap: 1rem;">
+          <div class="card card-grid">
             <h2>Werkwijze</h2>
             <p>In een gratis en vrijblijvend kennismakingsgesprek gaan we proberen de hulpvraag duidelijk in kaart te brengen en af te stemmen of er mogelijkheden zijn om een hulpverleningsrelatie aan te gaan, gebaseerd op wederzijds respect en vertrouwen.</p>
             <p>Erg belangrijk hierin is dat jij, als hulpvrager, duidelijk kenbaar maakt wat de verwachtingen zijn ten aanzien van de begeleiding.</p>
@@ -266,10 +265,10 @@
             <p>Het aanleren en/of uitbreiden van (nieuwe) vaardigheden vormt de basis voor mijn werkwijze. Daarnaast besteed ik veel aandacht aan de manier van denken en doen en de eigen invloed daarop (oorzaak/gevolg). De gedachte hierachter is het verkrijgen van inzicht in het eigen handelen, dan wel de eigen beperking en dit te koppelen aan de probleemervaringen in het dagelijkse leven.</p>
             <p>Pas als je goed inzicht hebt op je eigen beperking(en) en (on)mogelijkheden, kun je gaan werken aan goede oplossingen.</p>
           </div>
-          <div class="card" style="display: grid; gap: 1rem;">
+          <div class="card card-grid">
             <p>In de specifieke (woon)begeleiding richt ik mijn aandacht in eerste instantie op het verkrijgen van inzicht en overzicht van het functioneren in het algemeen. Ook hierin staat het aanleren van vaardigheden centraal. De vraag "Hoe kan ik voldoen aan de basiseisen die de maatschappij aan mij stelt, zonder dat ik daar stress bij ervaar omdat ik niet precies weet wat ik moet doen" zal hierin leidend zijn.</p>
             <p>De begeleiding zal afgestemd zijn op de volgende leefgebieden:</p>
-            <ul style="display: grid; gap: 0.5rem;">
+            <ul class="card-grid-compact">
               <li>Zingeving</li>
               <li>Wonen</li>
               <li>Financiën</li>
@@ -280,7 +279,7 @@
             <p>Begeleiding kan betaald worden uit persoonsgebonden budget (PGB), Zorg in natura (ZIN) of particulier via eigen middelen. Voor PGB en ZIN heb je wel een indicatie nodig. Voor specifieke vragen of nadere informatie hierover kun je ook contact met mij opnemen.</p>
           </div>
         </div>
-        <div class="image-gallery" style="margin-top: 2rem;">
+        <div class="image-gallery gallery-offset">
           <h3>Samenwerken in beeld</h3>
           <div class="image-grid">
             <figure>
@@ -330,7 +329,7 @@
       </section>
 
       <section id="visie" data-section="visie" class="page-section">
-        <div class="card" style="display: grid; gap: 1rem;">
+        <div class="card card-grid">
           <h2>Visie</h2>
           <p>Ieder mens is uniek en moet ook als zodanig benaderd worden.</p>
           <p>Zelfredzaamheid/zelfstandigheid is tegenwoordig erg belangrijk in een steeds harder en egoïstischer wordende maatschappij. Simpel gezegd is het gewoon een kwestie van de onmogelijkheden/tekortkomingen te compenseren met mogelijkheden/vaardigheden, waardoor het zelfvertrouwen dusdanig groeit dat de uitdagingen in het dagelijkse leven aangegaan kunnen worden.</p>
@@ -339,12 +338,12 @@
       </section>
 
       <section id="werkgebied" data-section="werkgebied" class="page-section">
-        <div class="card" style="display: grid; gap: 1.2rem;">
+        <div class="card card-grid-relaxed">
           <h2>Werkgebied</h2>
           <p>Ik wil mijn werkzaamheden uit gaan voeren binnen een straal van ongeveer 50 km, vanaf Oldenzaal.</p>
           <p>Daarbij bied ik maatwerkbegeleiding in de eigen leefomgeving, gefinancierd via PGB, ZIN of op particuliere basis. Ook instellingen kunnen mij als externe begeleider inschakelen.</p>
           <p>Werkgebied in Twente: Almelo, Borne, Dinkelland, Enschede, Haaksbergen, Hellendoorn, Hengelo, Hof van Twente, Losser, Oldenzaal, Rijssen-Holten, Tubbergen, Twenterand en Wierden.</p>
-          <a href="https://zorgondernemers-twente.nl" target="_blank" rel="noopener noreferrer" class="partner-link focus-ring" style="justify-self: start;">
+          <a href="https://zorgondernemers-twente.nl" target="_blank" rel="noopener noreferrer" class="partner-link focus-ring partner-align-start">
             <picture>
               <img
                 src="images/zorgondernemers-twente_logo-425.webp"
@@ -360,7 +359,7 @@
       </section>
 
       <section id="contact" data-section="contact" class="page-section" aria-labelledby="contact-title">
-        <div class="card" style="display: grid; gap: 1.2rem;">
+        <div class="card card-grid-relaxed">
           <h2 id="contact-title">Contact</h2>
           <p>Als u de indruk heeft dat uw persoonsgegevens niet goed beveiligd zijn of er aanwijzingen zijn van misbruik, neem dan contact met mij op via <a class="focus-ring email-link" data-email-user="erik" data-email-domain="erikleuning" data-email-tld="nl" href="mailto:">E-mail Erik</a>.</p>
           <p>U kunt een verzoek tot inzage, correctie of verwijdering sturen naar hetzelfde e-mailadres of telefonisch contact opnemen via <a href="tel:+31630516464" class="focus-ring">06-30516464</a>.</p>
@@ -411,7 +410,7 @@
       <div>
         <h3>Werkgebied</h3>
         <p>Begeleiding binnen een straal van circa 50 km rondom Oldenzaal en de 14 Twentse gemeenten.</p>
-        <a href="https://zorgondernemers-twente.nl" target="_blank" rel="noopener" class="partner-link focus-ring" style="margin-top: 1rem;">
+        <a href="https://zorgondernemers-twente.nl" target="_blank" rel="noopener" class="partner-link focus-ring partner-margin-top">
           <picture>
             <img
               src="images/zorgondernemers-twente_logo-425.webp"
@@ -458,7 +457,7 @@
   "@type": "ProfessionalService",
   "name": "Erik Leuning – Begeleiding en Ondersteuning",
   "url": "https://www.erikleuning.nl/",
-  "image": "https://www.erikleuning.nl/images/header-erik-leuning-1024.webp",
+  "image": "https://www.erikleuning.nl/images/social-card-1200x630.webp",
   "logo": "https://www.erikleuning.nl/images/logo256x256-256.webp",
   "address": {
     "@type": "PostalAddress",

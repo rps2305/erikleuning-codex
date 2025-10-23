@@ -12,11 +12,11 @@
     <meta property="og:title" content="Privacyverklaring" />
     <meta property="og:description" content="Privacyverklaring website Erik Leuning – Begeleiding en Ondersteuning" />
     <meta property="og:url" content="https://www.erikleuning.nl/privacyverklaring" />
-    <meta property="og:image" content="https://www.erikleuning.nl/images/header-erik-leuning-1024.webp" />
+    <meta property="og:image" content="https://www.erikleuning.nl/images/social-card-1200x630.webp" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Privacyverklaring" />
     <meta name="twitter:description" content="Privacyverklaring website Erik Leuning – Begeleiding en Ondersteuning" />
-    <meta name="twitter:image" content="https://www.erikleuning.nl/images/header-erik-leuning-1024.webp" />
+    <meta name="twitter:image" content="https://www.erikleuning.nl/images/social-card-1200x630.webp" />
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-58599156-1"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -53,17 +53,16 @@
   <a href="#inhoud" class="skip-link">Overslaan en naar de inhoud gaan</a>
   <div class="site-header__container">
     <a href="./" class="site-brand focus-ring">
-      <picture style="width: 4.25rem; height: 4.25rem; overflow: hidden; border-radius: 999px; border: 1px solid rgba(148, 163, 184, 0.35); display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.9);">
+      <picture class="brand-avatar">
         <img
           src="images/logo256x256-256.webp"
           width="128"
           height="128"
           loading="lazy"
           decoding="async"
-          alt="Home"
-          style="width: 100%; height: 100%; object-fit: contain;" />
+          alt="Home" />
       </picture>
-      <span style="display: flex; flex-direction: column; gap: 0.15rem;">
+      <span class="brand-stack">
         <span class="site-brand__title">Erik Leuning</span>
         <span class="site-brand__subtitle">Begeleiding en Ondersteuning</span>
       </span>
@@ -91,7 +90,7 @@
         </template>
       </button>
     </nav>
-    <div style="display: flex; align-items: center; gap: 0.75rem;">
+    <div class="header-actions">
       <button type="button" class="mobile-toggle focus-ring" @click="toggleTheme" :aria-pressed="isDark" aria-label="Thema wisselen">
         <template x-if="!isDark">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2m0 14v2m9-9h-2M5 12H3m15.364-6.364l-1.414 1.414M7.05 16.95 5.636 18.364M18.364 18.364 16.95 16.95M7.05 7.05 5.636 5.636M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
@@ -122,7 +121,7 @@
   </div>
 </header>
 
-    <main id="inhoud" class="page-wrapper privacy-page" style="max-width: 900px;">
+    <main id="inhoud" class="page-wrapper privacy-page privacy-page-content">
       <section class="privacy-hero">
         <div class="privacy-hero__media">
           <picture>
@@ -224,7 +223,7 @@
       <div>
         <h3>Werkgebied</h3>
         <p>Begeleiding binnen een straal van circa 50 km rondom Oldenzaal en de 14 Twentse gemeenten.</p>
-        <a href="https://zorgondernemers-twente.nl" target="_blank" rel="noopener" class="partner-link focus-ring" style="margin-top: 1rem;">
+        <a href="https://zorgondernemers-twente.nl" target="_blank" rel="noopener" class="partner-link focus-ring partner-margin-top">
           <picture>
             <img
               src="images/zorgondernemers-twente_logo-425.webp"
@@ -271,7 +270,7 @@
   "@type": "ProfessionalService",
   "name": "Erik Leuning – Begeleiding en Ondersteuning",
   "url": "https://www.erikleuning.nl/privacyverklaring",
-  "image": "https://www.erikleuning.nl/images/header-erik-leuning-1024.webp",
+  "image": "https://www.erikleuning.nl/images/social-card-1200x630.webp",
   "logo": "https://www.erikleuning.nl/images/logo256x256-256.webp",
   "address": {
     "@type": "PostalAddress",

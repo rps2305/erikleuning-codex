@@ -28,6 +28,10 @@ magick images/logo256x256-256.webp -resize 16x16 favicon-16x16.png
 magick images/logo256x256-256.webp -resize 256x256 -define icon:auto-resize=256,128,64,48,32,16 favicon.ico
 ```
 
+## Social preview
+
+De Open Graph- en Twitter-cards gebruiken `images/social-card-1200x630.webp`. Pas dit bestand aan als je een andere afbeelding voor linkpreviews wilt gebruiken.
+
 ## Analytics
 
 Google Analytics (Universal Analytics) is ingeladen via het standaard gtag.js-script in zowel `index.html` als `privacyverklaring.html` met tracking-ID `UA-58599156-1`. Pas de ID aan in beide bestanden als je een andere property wilt gebruiken.
