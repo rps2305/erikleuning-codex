@@ -55,6 +55,40 @@
 
   applyTheme(readStoredTheme());
 
+  function hydrateEmailAddresses() {
+    const nodes = document.querySelectorAll('[data-email-user][data-email-domain][data-email-tld]');
+    nodes.forEach((node) => {
+      const { emailUser, emailDomain, emailTld } = node.dataset;
+      if (!emailUser || !emailDomain || !emailTld) {
+        return;
+      }
+      const address = `${emailUser}@${emailDomain}.${emailTld}`;
+      if (node.tagName.toLowerCase() === 'a') {
+        node.setAttribute('href', `mailto:${address}`);
+        const existingRel = node.getAttribute('rel');
+        if (!existingRel) {
+          node.setAttribute('rel', 'nofollow');
+        } else if (!/nofollow/.test(existingRel)) {
+          node.setAttribute('rel', `${existingRel} nofollow`.trim());
+        }
+      }
+      node.textContent = address;
+      node.removeAttribute('data-email-user');
+      node.removeAttribute('data-email-domain');
+      node.removeAttribute('data-email-tld');
+    });
+  }
+
+  function initEmailProtection() {
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', hydrateEmailAddresses, { once: true });
+    } else {
+      hydrateEmailAddresses();
+    }
+  }
+
+  initEmailProtection();
+
   window.siteHeader = function siteHeader(currentPage) {
     return {
       pagina: currentPage,
@@ -218,30 +252,4 @@
     };
   };
 
-  function hydrateEmailLinks() {
-    const elements = document.querySelectorAll('[data-email-user][data-email-domain][data-email-tld]');
-    elements.forEach((el) => {
-      const user = el.getAttribute('data-email-user');
-      const domain = el.getAttribute('data-email-domain');
-      const tld = el.getAttribute('data-email-tld');
-      if (!user || !domain || !tld) {
-        return;
-      }
-      const email = `${user}@${domain}.${tld}`;
-      if (el.tagName === 'A') {
-        el.setAttribute('href', `mailto:${email}`);
-        if (!el.textContent.trim() || el.textContent.includes('[at]')) {
-          el.textContent = email;
-        }
-      } else {
-        el.textContent = email;
-      }
-    });
-  }
-
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', hydrateEmailLinks, { once: true });
-  } else {
-    hydrateEmailLinks();
-  }
 })();
