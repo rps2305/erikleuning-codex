@@ -224,11 +224,11 @@
 
   if (window.Alpine) {
     setupAlpine(window.Alpine);
-  } else {
-    document.addEventListener('alpine:init', () => {
-      setupAlpine(window.Alpine);
-    });
   }
+
+  document.addEventListener('alpine:initializing', () => {
+    setupAlpine(window.Alpine);
+  });
 
   function hydrateEmailLinks() {
     const elements = document.querySelectorAll('[data-email-user][data-email-domain][data-email-tld]');
