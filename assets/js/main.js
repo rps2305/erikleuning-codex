@@ -1,5 +1,6 @@
 (function () {
-  const STORAGE_KEY = 'erikleuning-theme';
+  const THEME_STORAGE_KEY = 'erikleuning-theme';
+  const CONSENT_STORAGE_KEY = 'erikleuning-cookie-consent';
   const NAV_ITEMS = [
     { id: 'home', label: 'Home', href: '#home' },
     { id: 'over-mij', label: 'Over mij', href: '#over-mij' },
@@ -11,7 +12,9 @@
     { id: 'privacy', label: 'Privacy', href: 'privacyverklaring.html' }
   ];
 
-  const prefersDark = () => window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+  const prefersDark = () =>
+    typeof window.matchMedia === 'function' &&
+    window.matchMedia('(prefers-color-scheme: dark)').matches;
 
   function applyTheme(isDark) {
     document.documentElement.classList.toggle('dark', isDark);
@@ -24,7 +27,7 @@
 
   function readStoredTheme() {
     try {
-      const stored = window.localStorage.getItem(STORAGE_KEY);
+      const stored = window.localStorage.getItem(THEME_STORAGE_KEY);
       if (stored === null) {
         return prefersDark();
       }
@@ -36,24 +39,26 @@
 
   function writeStoredTheme(isDark) {
     try {
-      window.localStorage.setItem(STORAGE_KEY, isDark ? 'dark' : 'light');
+      window.localStorage.setItem(THEME_STORAGE_KEY, isDark ? 'dark' : 'light');
     } catch (error) {
-      // Ignore storage errors (e.g. in private browsing)
+      // Ignore storage errors (e.g. private browsing)
+    }
+  }
+
+  function writeStoredConsent(value) {
+    try {
+      window.localStorage.setItem(CONSENT_STORAGE_KEY, value);
+    } catch (error) {
+      // Ignore storage errors
     }
   }
 
   applyTheme(readStoredTheme());
 
-  function setupAlpine(Alpine) {
-    if (!Alpine || setupAlpine.initialised) {
-      return;
-    }
-    setupAlpine.initialised = true;
-
-    Alpine.store('navigatie', { items: NAV_ITEMS });
-
-    Alpine.data('siteHeader', (currentPage) => ({
+  window.siteHeader = function siteHeader(currentPage) {
+    return {
       pagina: currentPage,
+      navItems: NAV_ITEMS,
       mobileOpen: false,
       isDark: false,
       activeSection: 'home',
@@ -175,24 +180,24 @@
           return;
         }
         const panel = this.$refs.mobilePanel;
-        if (!panel) {
+        if (!panel || panel.contains(event.target)) {
           return;
         }
-        if (!panel.contains(event.target)) {
-          const focusable = panel.querySelectorAll('a, button');
-          if (focusable.length) {
-            focusable[0].focus();
-          }
+        const focusable = panel.querySelectorAll('a, button');
+        if (focusable.length) {
+          focusable[0].focus();
         }
       }
-    }));
+    };
+  };
 
-    Alpine.data('cookieBanner', () => ({
+  window.cookieBanner = function cookieBanner() {
+    return {
       open: false,
       init() {
         let consent = null;
         try {
-          consent = window.localStorage.getItem('erikleuning-cookie-consent');
+          consent = window.localStorage.getItem(CONSENT_STORAGE_KEY);
         } catch (error) {
           consent = null;
         }
@@ -210,25 +215,8 @@
         writeStoredConsent('declined');
         this.open = false;
       }
-    }));
-
-    function writeStoredConsent(value) {
-      try {
-        window.localStorage.setItem('erikleuning-cookie-consent', value);
-      } catch (error) {
-        // Ignore storage errors
-      }
-    }
-  }
-  setupAlpine.initialised = false;
-
-  if (window.Alpine) {
-    setupAlpine(window.Alpine);
-  }
-
-  document.addEventListener('alpine:initializing', () => {
-    setupAlpine(window.Alpine);
-  });
+    };
+  };
 
   function hydrateEmailLinks() {
     const elements = document.querySelectorAll('[data-email-user][data-email-domain][data-email-tld]');
@@ -251,11 +239,9 @@
     });
   }
 
-  const ready = () => hydrateEmailLinks();
-
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', ready, { once: true });
+    document.addEventListener('DOMContentLoaded', hydrateEmailLinks, { once: true });
   } else {
-    ready();
+    hydrateEmailLinks();
   }
 })();

@@ -53,7 +53,7 @@
       </span>
     </a>
     <nav class="primary-nav" aria-label="Hoofdmenu desktop">
-      <template x-for="item in $store.navigatie.items" :key="item.href">
+      <template x-for="item in navItems" :key="item.href">
         <a
           :href="item.href"
           class="primary-nav__link focus-ring"
@@ -95,7 +95,7 @@
     </div>
   </div>
   <div x-show="mobileOpen" x-transition.opacity.duration.200ms class="mobile-panel" id="hoofdmenu" role="dialog" @keydown.window.escape.prevent="closeMenu" @click.away="closeMenu" x-ref="mobilePanel" aria-label="Hoofdmenu mobiel">
-    <template x-for="item in $store.navigatie.items" :key="item.href">
+    <template x-for="item in navItems" :key="item.href">
       <a
         :href="item.href"
         class="focus-ring"
