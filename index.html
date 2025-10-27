@@ -1,25 +1,50 @@
 <!DOCTYPE html>
-<html lang="nl" class="h-full">
+<html lang="nl">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Erik Leuning – Begeleiding en Ondersteuning – Oldenzaal</title>
-    <meta name="description" content="Persoonlijke begeleiding in Oldenzaal en Twente voor meer zelfstandigheid. Plan een kennismaking met Erik Leuning voor vertrouwde zorg en praktische ondersteuning." />
+    <meta name="description" content="Erik Leuning – begeleiding en ondersteuning in Twente. Persoonlijk, praktisch en betrouwbaar. Ontdek mijn kwaliteiten en aanpak." />
     <link rel="canonical" href="https://www.erikleuning.nl/" />
+    <link rel="alternate" hreflang="nl" href="https://www.erikleuning.nl/" />
     <meta itemprop="name" content="Erik Leuning – Begeleiding en Ondersteuning – Oldenzaal" />
-    <meta itemprop="description" content="Persoonlijke begeleiding in Oldenzaal en Twente voor meer zelfstandigheid. Plan een kennismaking met Erik Leuning voor vertrouwde zorg en praktische ondersteuning." />
+    <meta itemprop="description" content="Erik Leuning – begeleiding en ondersteuning in Twente. Persoonlijk, praktisch en betrouwbaar. Ontdek mijn kwaliteiten en aanpak." />
     <meta itemprop="image" content="/images/social-card-1200x630.webp" />
     <meta property="og:locale" content="nl_NL" />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Erik Leuning – Begeleiding en Ondersteuning" />
     <meta property="og:title" content="Erik Leuning – Begeleiding en Ondersteuning – Oldenzaal" />
-    <meta property="og:description" content="Persoonlijke begeleiding in Oldenzaal en Twente voor meer zelfstandigheid. Plan een kennismaking met Erik Leuning voor vertrouwde zorg en praktische ondersteuning." />
+    <meta property="og:description" content="Erik Leuning – begeleiding en ondersteuning in Twente. Persoonlijk, praktisch en betrouwbaar. Ontdek mijn kwaliteiten en aanpak." />
     <meta property="og:url" content="https://www.erikleuning.nl/" />
     <meta property="og:image" content="/images/social-card-1200x630.webp" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Erik Leuning – Begeleiding en Ondersteuning – Oldenzaal" />
-    <meta name="twitter:description" content="Persoonlijke begeleiding in Oldenzaal en Twente voor meer zelfstandigheid. Plan een kennismaking met Erik Leuning voor vertrouwde zorg en praktische ondersteuning." />
+    <meta name="twitter:description" content="Erik Leuning – begeleiding en ondersteuning in Twente. Persoonlijk, praktisch en betrouwbaar. Ontdek mijn kwaliteiten en aanpak." />
     <meta name="twitter:image" content="/images/social-card-1200x630.webp" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": "Erik Leuning – Begeleiding en Ondersteuning Twente",
+        "url": "https://www.erikleuning.nl/",
+        "image": "https://www.erikleuning.nl/images/header-erik-leuning-1024.webp",
+        "logo": "https://www.erikleuning.nl/images/logo256x256-256.webp",
+        "description": "Begeleiding en ondersteuning in Twente.",
+        "areaServed": "Twente",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "—",
+          "addressLocality": "Oldenzaal",
+          "addressRegion": "Overijssel",
+          "postalCode": "—",
+          "addressCountry": "NL"
+        },
+        "telephone": "+31630516464",
+        "sameAs": [
+          "https://www.linkedin.com/in/erik-leuning-376558aa/?originalSubdomain=nl"
+        ]
+      }
+    </script>
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-58599156-1"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -37,6 +62,70 @@
     <link rel="preload" href="assets/css/main.css" as="style" />
     <link rel="stylesheet" href="assets/css/main.css" media="print" onload="this.onload=null;this.media='all'" />
     <noscript><link rel="stylesheet" href="assets/css/main.css" /></noscript>
+    <style>
+      .feature-sections {
+        display: grid;
+        gap: clamp(1.5rem, 1rem + 1vw, 2.5rem);
+        margin-top: clamp(2rem, 1.5rem + 1vw, 3rem);
+      }
+
+      @media (min-width: 768px) {
+        .feature-sections {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          align-items: stretch;
+        }
+      }
+
+      .feature-panel {
+        background-color: var(--surface-muted);
+        -webkit-backdrop-filter: blur(12px);
+        backdrop-filter: blur(12px);
+        border-radius: 1.5rem;
+        padding: clamp(1.6rem, 1.3rem + 0.8vw, 2.3rem);
+        box-shadow: 0 20px 45px -24px rgba(15, 23, 42, 0.55);
+      }
+
+      .dark .feature-panel {
+        box-shadow: 0 22px 45px -24px rgba(8, 47, 73, 0.55);
+      }
+
+      .feature-panel > h2 {
+        margin-bottom: clamp(1.2rem, 1rem + 0.6vw, 1.6rem);
+      }
+
+      .feature-grid {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: grid;
+        gap: clamp(1rem, 0.9rem + 0.6vw, 1.5rem);
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      }
+
+      .feature-grid li {
+        background: linear-gradient(135deg, rgba(13, 126, 163, 0.08), rgba(13, 126, 163, 0.02));
+        border-radius: 1.1rem;
+        padding: 1rem 1.2rem;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+      }
+
+      .feature-grid li:hover,
+      .feature-grid li:focus-within {
+        transform: translateY(-2px);
+        box-shadow: 0 18px 32px -20px rgba(13, 126, 163, 0.6);
+      }
+
+      .feature-grid h3 {
+        margin-bottom: 0.35rem;
+        font-size: clamp(1.1rem, 1rem + 0.3vw, 1.3rem);
+      }
+
+      .feature-grid p {
+        margin: 0;
+        font-size: 1rem;
+        line-height: 1.5;
+      }
+    </style>
     <link rel="preconnect" href="https://a.tile.openstreetmap.org" crossorigin />
     <link rel="preconnect" href="https://b.tile.openstreetmap.org" crossorigin />
     <link rel="preconnect" href="https://c.tile.openstreetmap.org" crossorigin />
@@ -63,7 +152,7 @@
           height="128"
           loading="lazy"
           decoding="async"
-          alt="Home" />
+          alt="Logo Erik Leuning Begeleiding en Ondersteuning Twente" />
       </picture>
       <span class="brand-stack">
         <span class="site-brand__title">Erik Leuning</span>
@@ -142,7 +231,7 @@
                   height="48"
                   loading="lazy"
                   decoding="async"
-                  alt="logo Coöperatie Zorgondernemers Twente" />
+                  alt="Logo Coöperatie Zorgondernemers Twente" />
               </picture>
               <span>Aangesloten bij Coöperatie Zorgondernemers Twente</span>
             </a>
@@ -162,7 +251,7 @@
               height="614"
               loading="lazy"
               decoding="async"
-              alt="Vrouw rent door het gebergte" />
+              alt="Erik Leuning Begeleiding en Ondersteuning Twente - Vrouw rent door het gebergte" />
           </picture>
           <span class="hero-card__badge">Individuele begeleiding</span>
         </div>
@@ -216,32 +305,62 @@
           <p>In de laatste jaren als pedagogisch medewerker binnen bovengenoemde instelling, heb ik veel specifieke ervaring opgedaan in individuele, gefaseerde zelfstandigheidstraining en ben ervan overtuigd dat ik dit in de persoonlijke begeleiding goed kan vertalen naar een passend plan van aanpak om, in kleine stappen, tot gewenste groei te komen.</p>
           <p>Inmiddels heb ik een systematiek ontwikkeld, inclusief uitgebreid werkmateriaal, die ik voor meerdere doelgroepen in kan zetten. In 2015 heb ik mij aangesloten bij de coöperatie Zorgondernemers Twente.</p>
         </div>
-        <div class="about-pillars">
-          <article>
-            <h3>Mijn kwaliteiten</h3>
-            <ul>
-              <li>Goede communicatieve vaardigheden</li>
-              <li>Observeren / analyseren</li>
-              <li>Brede kennis van gedragsproblematiek</li>
-              <li>Inlevingsvermogen</li>
-              <li>Relativerend vermogen</li>
+        <div class="feature-sections">
+          <section aria-labelledby="kwaliteiten-heading" class="feature-panel">
+            <h2 id="kwaliteiten-heading">Mijn kwaliteiten</h2>
+            <ul class="feature-grid">
+              <li>
+                <h3>Communicatief sterk</h3>
+                <p>Goede communicatieve vaardigheden zorgen voor duidelijke verwachtingen en vertrouwen.</p>
+              </li>
+              <li>
+                <h3>Scherp analyserend</h3>
+                <p>Observeren en analyseren leidt tot maatwerkbegeleiding die aansluit op de hulpvraag.</p>
+              </li>
+              <li>
+                <h3>Brede gedragskennis</h3>
+                <p>Praktijkervaring met uiteenlopende gedragsproblematiek helpt bij het kiezen van passende begeleiding.</p>
+              </li>
+              <li>
+                <h3>Empathisch vermogen</h3>
+                <p>Inlevingsvermogen maakt ruimte voor persoonlijke aandacht en een veilig traject.</p>
+              </li>
+              <li>
+                <h3>Relativerende blik</h3>
+                <p>Relativerend vermogen houdt de begeleiding praktisch, haalbaar en motiverend.</p>
+              </li>
             </ul>
-          </article>
-          <article>
-            <h3>Mijn eigenschappen</h3>
-            <ul>
-              <li>Geduldig</li>
-              <li>Betrokken</li>
-              <li>Flexibel</li>
-              <li>Stressbestendig</li>
-              <li>Betrouwbaar</li>
+          </section>
+          <section aria-labelledby="eigenschappen-heading" class="feature-panel">
+            <h2 id="eigenschappen-heading">Mijn eigenschappen</h2>
+            <ul class="feature-grid">
+              <li>
+                <h3>Geduldig</h3>
+                <p>Geeft cliënten tijd om nieuwe stappen te zetten zonder druk.</p>
+              </li>
+              <li>
+                <h3>Betrokken</h3>
+                <p>Staat naast de cliënt en werkt samen met het netwerk voor duurzame vooruitgang.</p>
+              </li>
+              <li>
+                <h3>Flexibel</h3>
+                <p>Past begeleidingstijden en aanpak aan op wat in de praktijk nodig is.</p>
+              </li>
+              <li>
+                <h3>Stressbestendig</h3>
+                <p>Blijft kalm in complexe situaties en zet door totdat afspraken nagekomen zijn.</p>
+              </li>
+              <li>
+                <h3>Betrouwbaar</h3>
+                <p>Komt beloften na en zorgt voor heldere communicatie met alle betrokkenen.</p>
+              </li>
             </ul>
-          </article>
-          <article class="signature-card">
-            <h3>Richting &amp; samenwerking</h3>
-            <p>Samen met jou werk ik doelgericht aan zelfstandigheid in het dagelijkse leven. Met maatwerk, aandacht en bewezen methodieken bouwen we stap voor stap aan duurzaam zelfvertrouwen.</p>
-          </article>
+          </section>
         </div>
+        <article class="signature-card">
+          <h3>Richting &amp; samenwerking</h3>
+          <p>Samen met jou werk ik doelgericht aan zelfstandigheid in het dagelijkse leven. Met maatwerk, aandacht en bewezen methodieken bouwen we stap voor stap aan duurzaam zelfvertrouwen.</p>
+        </article>
       </section>
 
       <section id="doelgroep" data-section="doelgroep" class="page-section">
@@ -351,7 +470,7 @@
                 height="48"
                 loading="lazy"
                 decoding="async"
-                alt="logo Coöperatie Zorgondernemers Twente" />
+              alt="Logo Coöperatie Zorgondernemers Twente" />
             </picture>
             <span>Meer over Coöperatie Zorgondernemers Twente</span>
           </a>
@@ -377,7 +496,7 @@
           height="120"
           loading="lazy"
           decoding="async"
-          alt="Erik Leuning logo" />
+          alt="Logo Erik Leuning Begeleiding en Ondersteuning Twente" />
       </picture>
       <div>
         <p class="site-footer__eyebrow">Erik Leuning</p>
@@ -418,7 +537,7 @@
               height="48"
               loading="lazy"
               decoding="async"
-              alt="logo Coöperatie Zorgondernemers Twente" />
+              alt="Logo Coöperatie Zorgondernemers Twente" />
           </picture>
           <span>Bezoek de Coöperatie Zorgondernemers Twente</span>
         </a>
@@ -453,48 +572,17 @@
     <script src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
     <script type="application/ld+json">
       {
-  "@context": "https://schema.org",
-  "@type": "ProfessionalService",
-  "name": "Erik Leuning – Begeleiding en Ondersteuning",
-  "url": "https://www.erikleuning.nl/",
-  "image": "/images/social-card-1200x630.webp",
-  "logo": "https://www.erikleuning.nl/images/logo256x256-256.webp",
-  "address": {
-    "@type": "PostalAddress",
-    "addressLocality": "Oldenzaal",
-    "addressRegion": "Overijssel",
-    "addressCountry": "NL"
-  },
-  "areaServed": {
-    "@type": "GeoCircle",
-    "geoMidpoint": {
-      "@type": "GeoCoordinates",
-      "addressLocality": "Oldenzaal",
-      "addressRegion": "Overijssel",
-      "addressCountry": "NL"
-    },
-    "geoRadius": 50000
-  },
-  "sameAs": [
-    "https://www.linkedin.com/in/erik-leuning-376558aa/?originalSubdomain=nl"
-  ]
-}
-
-    </script>
-    <script type="application/ld+json">
-      {
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-  {
-    "@type": "ListItem",
-    "position": 1,
-    "name": "Home",
-    "item": "https://www.erikleuning.nl/"
-  }
-]
-}
-
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://www.erikleuning.nl/"
+          }
+        ]
+      }
     </script>
   </body>
 </html>

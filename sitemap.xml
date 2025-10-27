@@ -2,10 +2,12 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://www.erikleuning.nl/</loc>
-    <lastmod>2025-10-12T15:10:29.231Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://www.erikleuning.nl/privacyverklaring</loc>
-    <lastmod>2025-10-12T15:10:29.231Z</lastmod>
+    <loc>https://www.erikleuning.nl/privacyverklaring.html</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
   </url>
 </urlset>
