@@ -125,6 +125,16 @@
         font-size: 1rem;
         line-height: 1.5;
       }
+
+      .dark .hero {
+        background-color: var(--surface);
+        border-color: rgba(148, 163, 184, 0.25);
+        box-shadow: 0 55px 120px -60px rgba(8, 47, 73, 0.85);
+      }
+
+      .dark .hero__lede {
+        color: var(--text);
+      }
     </style>
     <link rel="preconnect" href="https://a.tile.openstreetmap.org" crossorigin />
     <link rel="preconnect" href="https://b.tile.openstreetmap.org" crossorigin />
@@ -141,7 +151,7 @@
     </script>
   </head>
   <body class="min-h-full bg-slate-50 text-slate-800 transition-colors dark:bg-slate-900 dark:text-slate-100">
-    <header data-x-data="siteHeader('home')" class="site-header">
+    <header x-data="siteHeader('home')" class="site-header">
   <a href="#inhoud" class="skip-link">Overslaan en naar de inhoud gaan</a>
   <div class="site-header__container">
     <a href="./" class="site-brand focus-ring">
@@ -160,55 +170,55 @@
       </span>
     </a>
     <nav class="primary-nav" aria-label="Hoofdmenu desktop">
-      <template data-x-for="item in navItems" data-x-bind:key="item.href">
+      <template x-for="item in navItems" x-bind:key="item.href">
         <a
-          data-x-bind:href="item.href"
+          x-bind:href="item.href"
           class="primary-nav__link focus-ring"
-          data-x-bind:aria-current="currentFor(item) ? 'page' : undefined"
-          data-x-text="item.label"
-          data-x-on:click="navigate($event, item)"></a>
+          x-bind:aria-current="currentFor(item) ? 'page' : undefined"
+          x-text="item.label"
+          x-on:click="navigate($event, item)"></a>
       </template>
       <button
         type="button"
         class="primary-nav__link focus-ring desktop-theme-toggle"
-        data-x-on:click="toggleTheme"
-        data-x-bind:aria-pressed="isDark"
+        x-on:click="toggleTheme"
+        x-bind:aria-pressed="isDark"
         aria-label="Thema wisselen">
-        <template data-x-if="!isDark">
+        <template x-if="!isDark">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2m0 14v2m9-9h-2M5 12H3m15.364-6.364l-1.414 1.414M7.05 16.95 5.636 18.364M18.364 18.364 16.95 16.95M7.05 7.05 5.636 5.636M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
         </template>
-        <template data-x-if="isDark">
+        <template x-if="isDark">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12.79A9 9 0 1111.21 3 7.5 7.5 0 0021 12.79z"/></svg>
         </template>
       </button>
     </nav>
     <div class="header-actions">
-      <button type="button" class="mobile-toggle focus-ring" data-x-on:click="toggleTheme" data-x-bind:aria-pressed="isDark" aria-label="Thema wisselen">
-        <template data-x-if="!isDark">
+      <button type="button" class="mobile-toggle focus-ring" x-on:click="toggleTheme" x-bind:aria-pressed="isDark" aria-label="Thema wisselen">
+        <template x-if="!isDark">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2m0 14v2m9-9h-2M5 12H3m15.364-6.364l-1.414 1.414M7.05 16.95 5.636 18.364M18.364 18.364 16.95 16.95M7.05 7.05 5.636 5.636M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
         </template>
-        <template data-x-if="isDark">
+        <template x-if="isDark">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12.79A9 9 0 1111.21 3 7.5 7.5 0 0021 12.79z"/></svg>
         </template>
       </button>
-      <button type="button" class="mobile-toggle focus-ring" data-x-on:click="toggleMenu" data-x-bind:aria-expanded="mobileOpen" aria-controls="hoofdmenu" aria-label="Hoofdmenu wisselen">
-        <template data-x-if="!mobileOpen">
+      <button type="button" class="mobile-toggle focus-ring" x-on:click="toggleMenu" x-bind:aria-expanded="mobileOpen" aria-controls="hoofdmenu" aria-label="Hoofdmenu wisselen">
+        <template x-if="!mobileOpen">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
         </template>
-        <template data-x-if="mobileOpen">
+        <template x-if="mobileOpen">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M6 6l12 12M18 6l-12 12"/></svg>
         </template>
       </button>
     </div>
   </div>
-  <div data-x-show="mobileOpen" data-x-transition.opacity.duration.200ms class="mobile-panel" id="hoofdmenu" role="dialog" data-x-on:keydown.window.escape.prevent="closeMenu" data-x-on:click.away="closeMenu" data-x-ref="mobilePanel" aria-label="Hoofdmenu mobiel">
-    <template data-x-for="item in navItems" data-x-bind:key="item.href">
+  <div x-show="mobileOpen" x-transition.opacity.duration.200ms class="mobile-panel" id="hoofdmenu" role="dialog" x-on:keydown.window.escape.prevent="closeMenu" x-on:click.away="closeMenu" x-ref="mobilePanel" aria-label="Hoofdmenu mobiel">
+    <template x-for="item in navItems" x-bind:key="item.href">
       <a
-        data-x-bind:href="item.href"
+        x-bind:href="item.href"
         class="focus-ring"
-        data-x-bind:aria-current="currentFor(item) ? 'page' : undefined"
-        data-x-text="item.label"
-        data-x-on:click="navigate($event, item)"></a>
+        x-bind:aria-current="currentFor(item) ? 'page' : undefined"
+        x-text="item.label"
+        x-on:click="navigate($event, item)"></a>
     </template>
   </div>
 </header>
@@ -558,12 +568,12 @@
   </div>
 </footer>
 
-<div data-x-data="cookieBanner()" data-x-cloak data-x-show="open" data-x-transition.opacity.duration.200ms class="cookie-banner" role="dialog" aria-live="polite" aria-label="Cookie melding" aria-describedby="cookie-banner-description">
+<div x-data="cookieBanner()" x-cloak x-show="open" x-transition.opacity.duration.200ms class="cookie-banner" role="dialog" aria-live="polite" aria-label="Cookie melding" aria-describedby="cookie-banner-description">
   <div class="cookie-banner__inner">
     <p id="cookie-banner-description">Deze site gebruikt uitsluitend functionele cookies om de werking van de website te ondersteunen. Er worden geen persoonsgegevens gedeeld met derden.</p>
     <div class="cookie-actions">
-      <button type="button" class="btn" data-x-on:click="accept">Accepteren</button>
-      <button type="button" class="cookie-decline focus-ring" data-x-on:click="decline">Weigeren</button>
+      <button type="button" class="btn" x-on:click="accept">Accepteren</button>
+      <button type="button" class="cookie-decline focus-ring" x-on:click="decline">Weigeren</button>
     </div>
   </div>
 </div>
