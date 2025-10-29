@@ -89,6 +89,39 @@
 
   initEmailProtection();
 
+  function initBackToTop() {
+    const setup = () => {
+      const button = document.querySelector('[data-back-to-top]');
+      if (!button) {
+        return;
+      }
+
+      const toggleVisibility = () => {
+        if (window.scrollY > 320) {
+          button.classList.add('is-visible');
+        } else {
+          button.classList.remove('is-visible');
+        }
+      };
+
+      button.addEventListener('click', (event) => {
+        event.preventDefault();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+
+      window.addEventListener('scroll', toggleVisibility, { passive: true });
+      toggleVisibility();
+    };
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', setup, { once: true });
+    } else {
+      setup();
+    }
+  }
+
+  initBackToTop();
+
   window.siteHeader = function siteHeader(currentPage) {
     return {
       pagina: currentPage,
