@@ -1,15 +1,17 @@
 (function () {
   const THEME_STORAGE_KEY = 'erikleuning-theme';
   const CONSENT_STORAGE_KEY = 'erikleuning-cookie-consent';
+  const CONSENT_TTL_MS = 90 * 24 * 60 * 60 * 1000;
+  const ANALYTICS_ID = 'UA-58599156-1';
   const NAV_ITEMS = [
-    { id: 'home', label: 'Home', href: '#home' },
+    { id: 'welkom', label: 'Home', href: '#welkom' },
+    { id: 'begeleiding', label: 'Begeleiding', href: '#begeleiding' },
     { id: 'over-mij', label: 'Over mij', href: '#over-mij' },
     { id: 'doelgroep', label: 'Doelgroep', href: '#doelgroep' },
     { id: 'werkwijze', label: 'Werkwijze', href: '#werkwijze' },
     { id: 'visie', label: 'Visie', href: '#visie' },
     { id: 'werkgebied', label: 'Werkgebied', href: '#werkgebied' },
-    { id: 'contact', label: 'Contact', href: '#contact' },
-    { id: 'privacy', label: 'Privacy', href: 'privacyverklaring.html' }
+    { id: 'contact', label: 'Contact', href: '#contact' }
   ];
 
   const prefersDark = () =>
@@ -45,12 +47,65 @@
     }
   }
 
-  function writeStoredConsent(value) {
+  function canStore() {
     try {
-      window.localStorage.setItem(CONSENT_STORAGE_KEY, value);
+      const key = '__consent_test__';
+      window.localStorage.setItem(key, '1');
+      window.localStorage.removeItem(key);
+      return true;
+    } catch (error) {
+      return false;
+    }
+  }
+
+  function readStoredConsent() {
+    try {
+      const raw = window.localStorage.getItem(CONSENT_STORAGE_KEY);
+      if (!raw) {
+        return null;
+      }
+      const data = JSON.parse(raw);
+      if (!data || !data.state || !data.timestamp) {
+        return null;
+      }
+      if (Date.now() - data.timestamp > CONSENT_TTL_MS) {
+        window.localStorage.removeItem(CONSENT_STORAGE_KEY);
+        return null;
+      }
+      return data.state;
+    } catch (error) {
+      return null;
+    }
+  }
+
+  function writeStoredConsent(state) {
+    try {
+      window.localStorage.setItem(
+        CONSENT_STORAGE_KEY,
+        JSON.stringify({ state, timestamp: Date.now() })
+      );
     } catch (error) {
       // Ignore storage errors
     }
+  }
+
+  function loadAnalytics() {
+    if (window.__analyticsLoaded) {
+      return;
+    }
+    window.__analyticsLoaded = true;
+    window.dataLayer = window.dataLayer || [];
+    window.gtag =
+      window.gtag ||
+      function gtag() {
+        window.dataLayer.push(arguments);
+      };
+    window.gtag('js', new Date());
+    window.gtag('config', ANALYTICS_ID);
+    const script = document.createElement('script');
+    script.async = true;
+    script.src = `https://www.googletagmanager.com/gtag/js?id=${ANALYTICS_ID}`;
+    document.head.appendChild(script);
   }
 
   applyTheme(readStoredTheme());
@@ -128,11 +183,17 @@
       navItems: NAV_ITEMS,
       mobileOpen: false,
       isDark: false,
-      activeSection: 'home',
+      activeSection: 'welkom',
       sectionObserver: null,
       sectionsList: [],
       sectionsIndex: new Map(),
       updateFromScroll: null,
+      linkFor(item) {
+        if (this.pagina !== 'home' && item.href.startsWith('#')) {
+          return `index.html${item.href}`;
+        }
+        return item.href;
+      },
       init() {
         this.isDark = readStoredTheme();
         applyTheme(this.isDark);
@@ -215,19 +276,16 @@
         fallbackUpdate();
       },
       currentFor(item) {
-        if (item.id === 'privacy') {
-          return this.pagina === 'privacy';
-        }
         if (this.pagina !== 'home') {
           return item.id === this.pagina;
         }
-        return (this.activeSection || 'home') === item.id;
+        return (this.activeSection || 'welkom') === item.id;
       },
       navigate(event, item) {
         if (item.href.startsWith('#')) {
           if (this.pagina !== 'home') {
             event.preventDefault();
-            const homeUrl = new URL('./', window.location.href);
+            const homeUrl = new URL('index.html', window.location.href);
             homeUrl.hash = item.href.slice(1);
             window.location.href = homeUrl.toString();
             return;
@@ -261,26 +319,58 @@
   window.cookieBanner = function cookieBanner() {
     return {
       open: false,
+      showPrefs: false,
+      analyticsEnabled: false,
+      lastFocused: null,
       init() {
-        let consent = null;
-        try {
-          consent = window.localStorage.getItem(CONSENT_STORAGE_KEY);
-        } catch (error) {
-          consent = null;
+        if (!canStore()) {
+          this.open = false;
+          this.analyticsEnabled = false;
+          return;
         }
-        if (consent !== 'accepted' && consent !== 'declined') {
-          window.setTimeout(() => {
-            this.open = true;
-          }, 600);
+        const consent = readStoredConsent();
+        if (consent === 'analytics') {
+          this.analyticsEnabled = true;
+          loadAnalytics();
+          return;
+        }
+        if (consent === 'rejected' || consent === 'essential-only') {
+          this.analyticsEnabled = false;
+          return;
+        }
+        window.setTimeout(() => {
+          this.open = true;
+          this.lastFocused = document.activeElement;
+          this.$nextTick(() => {
+            this.$el.querySelector('button')?.focus();
+          });
+        }, 600);
+      },
+      togglePrefs() {
+        this.showPrefs = !this.showPrefs;
+        if (this.showPrefs) {
+          this.$nextTick(() => {
+            this.$el.querySelector('input')?.focus();
+          });
         }
       },
       accept() {
-        writeStoredConsent('accepted');
+        const state = this.showPrefs && !this.analyticsEnabled ? 'essential-only' : 'analytics';
+        if (state === 'analytics') {
+          this.analyticsEnabled = true;
+          loadAnalytics();
+        }
+        writeStoredConsent(state);
         this.open = false;
+        this.showPrefs = false;
+        this.lastFocused?.focus?.();
       },
       decline() {
-        writeStoredConsent('declined');
+        this.analyticsEnabled = false;
+        writeStoredConsent('rejected');
         this.open = false;
+        this.showPrefs = false;
+        this.lastFocused?.focus?.();
       }
     };
   };

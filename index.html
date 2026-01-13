@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Erik Leuning – Begeleiding en Ondersteuning – Oldenzaal</title>
     <meta name="description" content="Erik Leuning – begeleiding en ondersteuning in Twente. Persoonlijk, praktisch en betrouwbaar. Ontdek mijn kwaliteiten en aanpak." />
-    <link rel="canonical" href="https://www.erikleuning.nl/" />
-    <link rel="alternate" hreflang="nl" href="https://www.erikleuning.nl/" />
+    <link rel="canonical" href="/" />
+    <link rel="alternate" hreflang="nl" href="/" />
     <meta itemprop="name" content="Erik Leuning – Begeleiding en Ondersteuning – Oldenzaal" />
     <meta itemprop="description" content="Erik Leuning – begeleiding en ondersteuning in Twente. Persoonlijk, praktisch en betrouwbaar. Ontdek mijn kwaliteiten en aanpak." />
     <meta itemprop="image" content="/images/social-card-1200x630.webp" />
@@ -15,7 +15,7 @@
     <meta property="og:site_name" content="Erik Leuning – Begeleiding en Ondersteuning" />
     <meta property="og:title" content="Erik Leuning – Begeleiding en Ondersteuning – Oldenzaal" />
     <meta property="og:description" content="Erik Leuning – begeleiding en ondersteuning in Twente. Persoonlijk, praktisch en betrouwbaar. Ontdek mijn kwaliteiten en aanpak." />
-    <meta property="og:url" content="https://www.erikleuning.nl/" />
+    <meta property="og:url" content="/" />
     <meta property="og:image" content="/images/social-card-1200x630.webp" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Erik Leuning – Begeleiding en Ondersteuning – Oldenzaal" />
@@ -44,13 +44,6 @@
           "https://www.linkedin.com/in/erik-leuning-376558aa/?originalSubdomain=nl"
         ]
       }
-    </script>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-58599156-1"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'UA-58599156-1');
     </script>
     <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
     <link rel="icon" type="image/png" sizes="192x192" href="android-chrome-192x192.png" />
@@ -172,7 +165,7 @@
     <nav class="primary-nav" aria-label="Hoofdmenu desktop">
       <template x-for="item in navItems" x-bind:key="item.href">
         <a
-          x-bind:href="item.href"
+          x-bind:href="linkFor(item)"
           class="primary-nav__link focus-ring"
           x-bind:aria-current="currentFor(item) ? 'page' : undefined"
           x-text="item.label"
@@ -214,7 +207,7 @@
   <div x-show="mobileOpen" x-transition.opacity.duration.200ms class="mobile-panel" id="hoofdmenu" role="dialog" x-on:keydown.window.escape.prevent="closeMenu" x-on:click.away="closeMenu" x-ref="mobilePanel" aria-label="Hoofdmenu mobiel">
     <template x-for="item in navItems" x-bind:key="item.href">
       <a
-        x-bind:href="item.href"
+        x-bind:href="linkFor(item)"
         class="focus-ring"
         x-bind:aria-current="currentFor(item) ? 'page' : undefined"
         x-text="item.label"
@@ -223,8 +216,20 @@
   </div>
 </header>
 
-    <main id="inhoud" class="page-wrapper">
-      <section id="home" data-section="home" class="hero">
+    <main id="inhoud" class="page-wrapper content-shell">
+      <noscript>
+        <nav class="no-js-nav" aria-label="Hoofdmenu">
+          <a href="#welkom">Home</a>
+          <a href="#begeleiding">Begeleiding</a>
+          <a href="#over-mij">Over mij</a>
+          <a href="#doelgroep">Doelgroep</a>
+          <a href="#werkwijze">Werkwijze</a>
+          <a href="#visie">Visie</a>
+          <a href="#werkgebied">Werkgebied</a>
+          <a href="#contact">Contact</a>
+        </nav>
+      </noscript>
+      <section id="welkom" data-section="welkom" class="hero">
         <div class="hero__text">
           <span class="badge">Erik Leuning - Begeleiding en Ondersteuning</span>
           <h1>Welkom bij Erik Leuning</h1>
@@ -267,9 +272,9 @@
         </div>
       </section>
 
-      <section class="page-section page-section--showcase" aria-labelledby="begeleiding-in-beeld">
+      <section id="begeleiding" data-section="begeleiding" class="page-section page-section--showcase" aria-labelledby="begeleiding-title">
         <div class="card card-grid-relaxed page-section__card">
-          <h2 id="begeleiding-in-beeld">Begeleiding in beeld</h2>
+          <h2 id="begeleiding-title">Begeleiding in beeld</h2>
           <div class="stat-cards">
             <article class="card card-grid">
               <h3>Biedt hulp bij</h3>
@@ -486,7 +491,7 @@
       <section id="contact" data-section="contact" class="page-section" aria-labelledby="contact-title">
         <div class="card card-grid-relaxed">
           <h2 id="contact-title">Contact</h2>
-          <p>Als u de indruk heeft dat uw persoonsgegevens niet goed beveiligd zijn of er aanwijzingen zijn van misbruik, neem dan contact met mij op via <a class="focus-ring email-link" data-email-user="erik" data-email-domain="erikleuning" data-email-tld="nl" href="mailto:">E-mail Erik</a>.</p>
+          <p>Als u de indruk heeft dat uw persoonsgegevens niet goed beveiligd zijn of er aanwijzingen zijn van misbruik, neem dan contact met mij op via <a class="focus-ring email-link" data-email-user="erik" data-email-domain="erikleuning" data-email-tld="nl" href="mailto:erik@erikleuning.nl">E-mail Erik</a>.</p>
           <p>U kunt een verzoek tot inzage, correctie of verwijdering sturen naar hetzelfde e-mailadres of telefonisch contact opnemen via <a href="tel:+31630516464" class="focus-ring">06-30516464</a>.</p>
           <p>VAN KWETSBAARHEID NAAR ZELFREDZAAMHEID/ZELFSTANDIGHEID!</p>
         </div>
@@ -514,7 +519,8 @@
       <div>
         <h3>Snelle navigatie</h3>
         <nav aria-label="Footer" class="site-footer__nav">
-          <a href="#home">Home</a>
+          <a href="#welkom">Welkom</a>
+          <a href="#begeleiding">Begeleiding</a>
           <a href="#over-mij">Over mij</a>
           <a href="#doelgroep">Doelgroep</a>
           <a href="#werkwijze">Werkwijze</a>
@@ -527,7 +533,7 @@
       <div>
         <h3>Bereikbaarheid</h3>
         <ul class="site-footer__list">
-          <li><a class="focus-ring email-link" data-email-user="erik" data-email-domain="erikleuning" data-email-tld="nl" href="mailto:">E-mail Erik</a></li>
+          <li><a class="focus-ring email-link" data-email-user="erik" data-email-domain="erikleuning" data-email-tld="nl" href="mailto:erik@erikleuning.nl">E-mail Erik</a></li>
           <li><a href="tel:+31630516464" class="focus-ring">06-30516464</a></li>
           <li><a href="https://www.linkedin.com/in/erik-leuning-376558aa/?originalSubdomain=nl" class="focus-ring">LinkedIn</a></li>
         </ul>
@@ -551,13 +557,13 @@
     </div>
     <section class="site-footer__accessibility" aria-labelledby="footer-accessibility">
       <h3 id="footer-accessibility">Toegankelijkheid</h3>
-      <p>Ik volg de WCAG&nbsp;2.1 AA-richtlijnen om deze site voor iedereen bruikbaar te maken. Signaleert u toch een toegankelijkheidsprobleem? Mail <a class="focus-ring email-link" data-email-user="erik" data-email-domain="erikleuning" data-email-tld="nl" href="mailto:">E-mail Erik</a> of bel <a href="tel:+31630516464" class="focus-ring">06-30516464</a>.</p>
+      <p>Ik volg de WCAG&nbsp;2.1 AA-richtlijnen om deze site voor iedereen bruikbaar te maken. Signaleert u toch een toegankelijkheidsprobleem? Mail <a class="focus-ring email-link" data-email-user="erik" data-email-domain="erikleuning" data-email-tld="nl" href="mailto:erik@erikleuning.nl">E-mail Erik</a> of bel <a href="tel:+31630516464" class="focus-ring">06-30516464</a>.</p>
     </section>
   </div>
   <div class="site-footer__bottom">
-    <p>© 2025 Erik Leuning – Begeleiding en Ondersteuning</p>
+    <p>© 2026 Erik Leuning – Begeleiding en Ondersteuning</p>
     <div>
-      <a class="focus-ring email-link" data-email-user="erik" data-email-domain="erikleuning" data-email-tld="nl" href="mailto:">E-mail Erik</a>
+      <a class="focus-ring email-link" data-email-user="erik" data-email-domain="erikleuning" data-email-tld="nl" href="mailto:erik@erikleuning.nl">E-mail Erik</a>
       <span aria-hidden="true">·</span>
           <a href="privacyverklaring.html" class="focus-ring">Privacyverklaring &amp; disclaimer</a>
     </div>
@@ -571,10 +577,20 @@
 
 <div x-data="cookieBanner()" x-cloak x-show="open" x-transition.opacity.duration.200ms class="cookie-banner" role="dialog" aria-live="polite" aria-label="Cookie melding" aria-describedby="cookie-banner-description">
   <div class="cookie-banner__inner">
-    <p id="cookie-banner-description">Deze site gebruikt uitsluitend functionele cookies om de werking van de website te ondersteunen. Er worden geen persoonsgegevens gedeeld met derden.</p>
+    <div class="cookie-banner__content">
+      <p id="cookie-banner-description">Deze site gebruikt functionele cookies. Analytics is optioneel en wordt pas geladen na toestemming.</p>
+      <div class="cookie-preferences" id="cookie-preferences" x-show="showPrefs">
+        <label class="cookie-toggle">
+          <input type="checkbox" x-model="analyticsEnabled" />
+          <span>Analytics cookies toestaan</span>
+        </label>
+        <p class="cookie-hint">Alleen geanonimiseerde bezoekersstatistieken.</p>
+      </div>
+    </div>
     <div class="cookie-actions">
       <button type="button" class="btn" x-on:click="accept">Accepteren</button>
       <button type="button" class="cookie-decline focus-ring" x-on:click="decline">Weigeren</button>
+      <button type="button" class="cookie-decline focus-ring" x-on:click="togglePrefs" x-bind:aria-expanded="showPrefs" aria-controls="cookie-preferences">Voorkeuren</button>
     </div>
   </div>
 </div>

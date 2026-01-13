@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="nl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Design System | Erik Leuning</title>
+    <meta name="description" content="Referentie voor typografie, buttons, kaarten, spacing en cookie banner states." />
+    <link rel="canonical" href="/design-system" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+  </head>
+  <body class="min-h-full bg-slate-50 text-slate-800">
+    <header class="site-header">
+      <a href="#inhoud" class="skip-link">Overslaan en naar de inhoud gaan</a>
+      <div class="site-header__container">
+        <a href="./" class="site-brand focus-ring">
+          <picture class="brand-avatar">
+            <img src="images/logo256x256-256.webp" width="128" height="128" alt="Logo Erik Leuning" />
+          </picture>
+          <span class="brand-stack">
+            <span class="site-brand__title">Erik Leuning</span>
+            <span class="site-brand__subtitle">Design System</span>
+          </span>
+        </a>
+        <nav class="primary-nav" aria-label="Design system">
+          <a class="primary-nav__link focus-ring" href="./">Terug naar site</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="inhoud" class="page-wrapper">
+      <section class="page-section">
+        <h1>Design System</h1>
+        <p class="hero__lede">Referentie voor typografie, buttons, cards, forms en cookie states.</p>
+      </section>
+
+      <section class="page-section card">
+        <h2>Typografie</h2>
+        <h3>Heading 3 voorbeeld</h3>
+        <p>Body tekst voor het testen van line-height, leesbaarheid en lengte van zinnen.</p>
+        <p><strong>Accent tekst</strong> om contrast te controleren.</p>
+      </section>
+
+      <section class="page-section card">
+        <h2>Buttons</h2>
+        <div class="card-grid-compact">
+          <button type="button" class="btn">Primaire button</button>
+          <button type="button" class="cookie-decline focus-ring">Secundaire button</button>
+        </div>
+      </section>
+
+      <section class="page-section card">
+        <h2>Cards</h2>
+        <div class="stat-cards">
+          <article class="card card-grid">
+            <h3>Card titel</h3>
+            <p>Korte toelichting op de kaart met voorbeeldtekst.</p>
+          </article>
+          <article class="card card-grid">
+            <h3>Card titel</h3>
+            <p>Korte toelichting op de kaart met voorbeeldtekst.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="page-section card">
+        <h2>Forms</h2>
+        <div class="card-grid">
+          <label>
+            Naam
+            <input type="text" class="focus-ring" placeholder="Voorbeeld" />
+          </label>
+          <label>
+            E-mail
+            <input type="email" class="focus-ring" placeholder="voorbeeld@mail.nl" />
+          </label>
+          <label>
+            Bericht
+            <textarea class="focus-ring" rows="4" placeholder="Bericht..."></textarea>
+          </label>
+        </div>
+      </section>
+
+      <section class="page-section card">
+        <h2>Cookie banner states</h2>
+        <div class="cookie-banner" style="position:static; transform:none; width:100%;">
+          <div class="cookie-banner__inner">
+            <p>Functionele cookies actief. Kies of je analytics toestaat.</p>
+            <div class="cookie-actions">
+              <button type="button" class="btn">Accepteren</button>
+              <button type="button" class="cookie-decline focus-ring">Weigeren</button>
+              <button type="button" class="cookie-decline focus-ring">Voorkeuren</button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
