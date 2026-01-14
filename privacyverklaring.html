@@ -5,13 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Privacyverklaring | Erik Leuning</title>
     <meta name="description" content="Lees hoe Erik Leuning – Begeleiding en Ondersteuning omgaat met persoonsgegevens, bewaartermijnen en beveiliging." />
-    <link rel="canonical" href="/privacyverklaring" />
+    <link rel="canonical" href="https://www.erikleuning.nl/privacyverklaring.html" />
+    <link rel="alternate" hreflang="nl" href="https://www.erikleuning.nl/privacyverklaring.html" />
     <meta property="og:locale" content="nl_NL" />
     <meta property="og:type" content="article" />
     <meta property="og:site_name" content="Erik Leuning – Begeleiding en Ondersteuning" />
     <meta property="og:title" content="Privacyverklaring" />
     <meta property="og:description" content="Privacyverklaring website Erik Leuning – Begeleiding en Ondersteuning" />
-    <meta property="og:url" content="/privacyverklaring" />
+    <meta property="og:url" content="https://www.erikleuning.nl/privacyverklaring.html" />
     <meta property="og:image" content="/images/social-card-1200x630.webp" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Privacyverklaring" />
@@ -25,11 +26,7 @@
     <link rel="shortcut icon" href="favicon.ico" />
     <link rel="manifest" href="site.webmanifest" />
     <link rel="preload" href="assets/css/main.css" as="style" />
-    <link rel="stylesheet" href="assets/css/main.css" media="print" onload="this.onload=null;this.media='all'" />
-    <noscript><link rel="stylesheet" href="assets/css/main.css" /></noscript>
-    <link rel="preconnect" href="https://a.tile.openstreetmap.org" crossorigin />
-    <link rel="preconnect" href="https://b.tile.openstreetmap.org" crossorigin />
-    <link rel="preconnect" href="https://c.tile.openstreetmap.org" crossorigin />
+    <link rel="stylesheet" href="assets/css/main.css" />
     <script>
       (() => {
         const key = 'erikleuning-theme';
@@ -42,9 +39,9 @@
     </script>
   </head>
   <body class="min-h-full bg-slate-50 text-slate-800 transition-colors dark:bg-slate-900 dark:text-slate-100">
-    <header x-data="siteHeader('privacy')" class="site-header">
+    <header x-data="siteHeader('privacy')" x-on:focusin.window="trapFocus($event)" class="site-header">
   <a href="#inhoud" class="skip-link">Overslaan en naar de inhoud gaan</a>
-  <div class="site-header__container">
+  <div class="site-header__container content-shell">
     <a href="./" class="site-brand focus-ring">
       <picture class="brand-avatar">
         <img
@@ -92,7 +89,7 @@
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12.79A9 9 0 1111.21 3 7.5 7.5 0 0021 12.79z"/></svg>
         </template>
       </button>
-      <button type="button" class="mobile-toggle focus-ring" @click="toggleMenu" :aria-expanded="mobileOpen" aria-controls="hoofdmenu" aria-label="Hoofdmenu wisselen">
+      <button type="button" class="mobile-toggle focus-ring" x-ref="menuToggle" @click="toggleMenu" :aria-expanded="mobileOpen" aria-controls="hoofdmenu" aria-label="Hoofdmenu wisselen">
         <template x-if="!mobileOpen">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
         </template>
@@ -102,7 +99,7 @@
       </button>
     </div>
   </div>
-  <div x-show="mobileOpen" x-transition.opacity.duration.200ms class="mobile-panel" id="hoofdmenu" role="dialog" @keydown.window.escape.prevent="closeMenu" @click.away="closeMenu" x-ref="mobilePanel" aria-label="Hoofdmenu mobiel">
+  <div x-show="mobileOpen" x-transition.opacity.duration.200ms class="mobile-panel" id="hoofdmenu" role="dialog" @keydown.window.escape.prevent="closeMenu" @keydown="trapMenuFocus($event)" @click.away="closeMenu" x-ref="mobilePanel" aria-label="Hoofdmenu mobiel">
     <template x-for="item in navItems" :key="item.href">
       <a
         :href="linkFor(item)"
@@ -290,7 +287,7 @@
   "@context": "https://schema.org",
   "@type": "ProfessionalService",
   "name": "Erik Leuning – Begeleiding en Ondersteuning",
-  "url": "https://www.erikleuning.nl/privacyverklaring",
+  "url": "https://www.erikleuning.nl/privacyverklaring.html",
   "image": "/images/social-card-1200x630.webp",
   "logo": "https://www.erikleuning.nl/images/logo256x256-256.webp",
   "address": {
@@ -330,7 +327,7 @@
     "@type": "ListItem",
     "position": 2,
     "name": "Privacyverklaring",
-    "item": "https://www.erikleuning.nl/privacyverklaring"
+    "item": "https://www.erikleuning.nl/privacyverklaring.html"
   }
 ]
 }

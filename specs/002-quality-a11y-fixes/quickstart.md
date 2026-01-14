@@ -9,9 +9,12 @@
 3. Run accessibility checks via axe-core CLI:
    - `npx --yes @axe-core/cli "file://$PWD/index.html"`
    - Repeat for `privacyverklaring.html` and `design-system.html`.
+4. Run performance budget checks (Lighthouse or equivalent) against the same pages.
 
 ## Manual verification
 - Resize the browser to 320px, 768px, 1024px, 1366px, 1440px and confirm the header container width matches the main content width.
-- Click each nav link on the privacy page and ensure it navigates to the homepage sections.
+- Click each nav link on the privacy page and design system page and ensure it navigates to the homepage sections.
 - Open the mobile menu, navigate via keyboard, and press Escape to verify focus trap behavior.
-- Inspect canonical/OG/hreflang tags to confirm they reference `https://www.erikleuning.nl/` (and `/privacyverklaring.html`).
+- Inspect canonical/OG/hreflang tags to confirm they reference `https://www.erikleuning.nl/` (and `/privacyverklaring.html`) and that preconnects are only used for active origins.
+- Disable JavaScript/CSS and confirm navigation and content remain accessible.
+- Validate the cookie banner allows Reject as easily as Accept and behaves correctly when localStorage is blocked.

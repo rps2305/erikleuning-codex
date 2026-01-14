@@ -43,7 +43,7 @@ specs/002-quality-a11y-fixes/
 ├── quickstart.md
 ├── contracts/
 │   └── README.md
-└── tasks.md  # Not generated yet (Phase 2 / speckit.tasks)
+└── tasks.md
 ```
 
 ### Source Code (repository root)

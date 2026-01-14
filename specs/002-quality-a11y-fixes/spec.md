@@ -52,8 +52,8 @@ production URLs and only include used preconnects.
 
 **Acceptance Scenarios**:
 
-1. **Given** the homepage and privacy page, **When** I inspect canonical, OG, and
-hreflang tags, **Then** they use absolute URLs for `https://www.erikleuning.nl/`.
+1. **Given** the homepage, privacy page, and design system page, **When** I inspect canonical, OG, and
+hreflang tags, **Then** they use absolute URLs for `https://www.erikleuning.nl/` (and `/privacyverklaring.html` for the privacy page).
 2. **Given** the page head, **When** I list preconnect links, **Then** each one
 is used by a corresponding resource on that page.
 
@@ -77,8 +77,6 @@ to the first menu item.
 closes and focus returns to the toggle button.
 
 ---
-
-[Add more user stories as needed, each with an assigned priority]
 
 ### Edge Cases
 
@@ -105,7 +103,7 @@ URLs and the privacy page URL MUST match the deployed route.
 unused preconnects).
 - **FR-005**: Mobile menu MUST provide focus trapping while open and restore focus
 to the toggle on close.
-- **FR-006**: HTML, CSS, and JavaScript lint checks MUST report zero errors.
+- **FR-006**: HTML, CSS, and JavaScript lint checks MUST report zero errors (see SC-001 for measurable outcome).
 
 ### Non-Functional Requirements (Constitution)
 
@@ -115,7 +113,7 @@ to the toggle on close.
 - **NFR-004**: Cookie consent defaults to functional-only; Reject is as easy as Accept.
 - **NFR-005**: If APIs exist, CORS origins are explicit and OPTIONS preflight is supported.
 - **NFR-006**: Performance budgets and accessibility checks are required gates.
-- **NFR-007**: Environment-specific values come from config and `.env.example` is updated.
+- **NFR-007**: Environment-specific values come from config; if no environment-specific values exist (purely static site), `.env.example` is not required.
 
 ### Assumptions
 
@@ -131,10 +129,9 @@ to the toggle on close.
 
 ### Measurable Outcomes
 
-- **SC-001**: `htmlhint`, `stylelint`, and `eslint` report zero errors on repo files.
-- **SC-002**: axe-core CLI reports 0 violations for `index.html`,
+- **SC-001**: axe-core CLI reports 0 violations for `index.html`,
 `privacyverklaring.html`, and `design-system.html`.
-- **SC-003**: Header container and main content widths match within 1px at 320px,
+- **SC-002**: Header container and main content widths match within 1px at 320px,
 768px, 1024px, 1366px, and 1440px viewports.
-- **SC-004**: Canonical/OG/hreflang values resolve to absolute production URLs
+- **SC-003**: Canonical/OG/hreflang values resolve to absolute production URLs
 and match sitemap entries.

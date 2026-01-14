@@ -184,6 +184,7 @@
       mobileOpen: false,
       isDark: false,
       activeSection: 'welkom',
+      lastMenuFocus: null,
       sectionObserver: null,
       sectionsList: [],
       sectionsIndex: new Map(),
@@ -211,14 +212,54 @@
       toggleMenu() {
         this.mobileOpen = !this.mobileOpen;
         if (this.mobileOpen) {
-          this.$nextTick(() => {
-            const focusable = this.$refs.mobilePanel?.querySelectorAll('a, button');
-            focusable?.[0]?.focus();
-          });
+          this.lastMenuFocus = this.$refs.menuToggle || document.activeElement;
+          this.$nextTick(() => this.focusFirstMenuItem());
+        } else {
+          this.restoreMenuFocus();
         }
       },
       closeMenu() {
         this.mobileOpen = false;
+        this.$nextTick(() => this.restoreMenuFocus());
+      },
+      getMenuFocusable() {
+        const panel = this.$refs.mobilePanel;
+        if (!panel) {
+          return [];
+        }
+        return Array.from(panel.querySelectorAll('a, button'));
+      },
+      focusFirstMenuItem() {
+        const focusable = this.getMenuFocusable();
+        if (focusable.length) {
+          focusable[0].focus();
+        }
+      },
+      restoreMenuFocus() {
+        const target = this.lastMenuFocus || this.$refs.menuToggle;
+        if (target && typeof target.focus === 'function') {
+          target.focus();
+        }
+      },
+      trapMenuFocus(event) {
+        if (!this.mobileOpen || event.key !== 'Tab') {
+          return;
+        }
+        const focusable = this.getMenuFocusable();
+        if (!focusable.length) {
+          return;
+        }
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+        if (event.shiftKey && (document.activeElement === first || document.activeElement === this.$refs.mobilePanel)) {
+          event.preventDefault();
+          last.focus();
+          return;
+        }
+        if (!event.shiftKey && document.activeElement === last) {
+          event.preventDefault();
+          first.focus();
+        }
       },
       setupSectionObserver() {
         this.sectionsList = Array.from(document.querySelectorAll('[data-section]'));
