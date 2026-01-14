@@ -33,6 +33,9 @@ There is no build or test pipeline. Edit files directly and open them in a brows
 ## Active Technologies
 - HTML5, CSS3, JavaScript (ES2015+) + Tailwind CSS (precompiled), Alpine.js (navigation + cookie banner) (001-mobile-site-polish)
 - N/A (static files only) (001-mobile-site-polish)
+- Vanilla HTML5, CSS3, and ES2021 JavaScrip + None (static assets only; optional tooling via htmlhint, stylelint, eslint, axe-core, lighthouse) (001-design-system-enhancements)
+- N/A (static site) (001-design-system-enhancements)
+- Vanilla HTML5, CSS3, and ES2021 JavaScrip + None (static assets only; Tailwind config added as reference) (001-design-system-complete)
 
 ## Recent Changes
 - 001-mobile-site-polish: Added HTML5, CSS3, JavaScript (ES2015+) + Tailwind CSS (precompiled), Alpine.js (navigation + cookie banner)
