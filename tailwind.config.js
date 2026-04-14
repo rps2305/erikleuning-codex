@@ -11,11 +11,11 @@ module.exports = {
     },
     extend: {
       colors: {
-        body: 'var(--body)',
-        surface: 'var(--surface)',
-        text: 'var(--text)',
-        accent: 'var(--accent)',
-        'accent-dark': 'var(--accent-dark)',
+        body: 'var(--body, #f1f5f9)',
+        surface: 'var(--surface, #fff)',
+        text: 'var(--text, #0f172a)',
+        accent: 'var(--accent, #0891b2)',
+        'accent-dark': 'var(--accent-dark, #0e7490)',
       },
       spacing: {
         xs: '4px',

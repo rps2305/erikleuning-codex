@@ -1,4 +1,6 @@
 (function () {
+  'use strict';
+  
   const THEME_STORAGE_KEY = 'erikleuning-theme';
   const CONSENT_STORAGE_KEY = 'erikleuning-cookie-consent';
   const CONSENT_TTL_MS = 90 * 24 * 60 * 60 * 1000;
@@ -13,168 +15,86 @@
     { id: 'werkgebied', label: 'Werkgebied', href: '#werkgebied' },
     { id: 'contact', label: 'Contact', href: '#contact' }
   ];
-
-  const prefersDark = () =>
-    typeof window.matchMedia === 'function' &&
-    window.matchMedia('(prefers-color-scheme: dark)').matches;
-
-  function applyTheme(isDark) {
-    document.documentElement.classList.toggle('dark', isDark);
-    if (isDark) {
-      document.documentElement.setAttribute('data-theme', 'dark');
+  
+  function initImageErrorHandling() {
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', setupImageErrors, { once: true });
     } else {
-      document.documentElement.removeAttribute('data-theme');
+      setupImageErrors();
     }
   }
 
-  function readStoredTheme() {
-    try {
-      const stored = window.localStorage.getItem(THEME_STORAGE_KEY);
-      if (stored === null) {
-        return prefersDark();
+  function initOfflineDetection() {
+    const offlineNotice = document.getElementById('offline-notice');
+    if (!offlineNotice) return;
+
+    function updateOnlineStatus() {
+      if (navigator.onLine) {
+        offlineNotice.setAttribute('hidden', '');
+        offlineNotice.removeAttribute('aria-live');
+      } else {
+        offlineNotice.removeAttribute('hidden');
+        offlineNotice.setAttribute('aria-live', 'polite');
       }
-      return stored === 'dark';
-    } catch (error) {
-      return prefersDark();
     }
+
+    window.addEventListener('online', updateOnlineStatus);
+    window.addEventListener('offline', updateOnlineStatus);
+    updateOnlineStatus();
   }
-
-  function writeStoredTheme(isDark) {
-    try {
-      window.localStorage.setItem(THEME_STORAGE_KEY, isDark ? 'dark' : 'light');
-    } catch (error) {
-      // Ignore storage errors (e.g. private browsing)
-    }
-  }
-
-  function canStore() {
-    try {
-      const key = '__consent_test__';
-      window.localStorage.setItem(key, '1');
-      window.localStorage.removeItem(key);
-      return true;
-    } catch (error) {
-      return false;
-    }
-  }
-
-  function readStoredConsent() {
-    try {
-      const raw = window.localStorage.getItem(CONSENT_STORAGE_KEY);
-      if (!raw) {
-        return null;
-      }
-      const data = JSON.parse(raw);
-      if (!data || !data.state || !data.timestamp) {
-        return null;
-      }
-      if (Date.now() - data.timestamp > CONSENT_TTL_MS) {
-        window.localStorage.removeItem(CONSENT_STORAGE_KEY);
-        return null;
-      }
-      return data.state;
-    } catch (error) {
-      return null;
-    }
-  }
-
-  function writeStoredConsent(state) {
-    try {
-      window.localStorage.setItem(
-        CONSENT_STORAGE_KEY,
-        JSON.stringify({ state, timestamp: Date.now() })
-      );
-    } catch (error) {
-      // Ignore storage errors
-    }
-  }
-
-  function loadAnalytics() {
-    if (window.__analyticsLoaded) {
-      return;
-    }
-    window.__analyticsLoaded = true;
-    window.dataLayer = window.dataLayer || [];
-    window.gtag =
-      window.gtag ||
-      function gtag() {
-        window.dataLayer.push(arguments);
-      };
-    window.gtag('js', new Date());
-    window.gtag('config', ANALYTICS_ID);
-    const script = document.createElement('script');
-    script.async = true;
-    script.src = `https://www.googletagmanager.com/gtag/js?id=${ANALYTICS_ID}`;
-    document.head.appendChild(script);
-  }
-
-  applyTheme(readStoredTheme());
-
-  function hydrateEmailAddresses() {
-    const nodes = document.querySelectorAll('[data-email-user][data-email-domain][data-email-tld]');
-    nodes.forEach((node) => {
-      const { emailUser, emailDomain, emailTld } = node.dataset;
-      if (!emailUser || !emailDomain || !emailTld) {
-        return;
-      }
-      const address = `${emailUser}@${emailDomain}.${emailTld}`;
-      if (node.tagName.toLowerCase() === 'a') {
-        node.setAttribute('href', `mailto:${address}`);
-        const existingRel = node.getAttribute('rel');
-        if (!existingRel) {
-          node.setAttribute('rel', 'nofollow');
-        } else if (!/nofollow/.test(existingRel)) {
-          node.setAttribute('rel', `${existingRel} nofollow`.trim());
+  
+  function setupImageErrors() {
+    const images = document.querySelectorAll('img');
+    images.forEach(function(img) {
+      img.addEventListener('error', function() {
+        this.setAttribute('data-error', 'true');
+        this.removeAttribute('src');
+        this.style.display = 'none';
+        
+        var fallback = document.createElement('div');
+        fallback.className = 'image-fallback';
+        fallback.setAttribute('role', 'img');
+        fallback.setAttribute('aria-label', 'Afbeelding kon niet laden');
+        
+        var alt = this.getAttribute('alt');
+        if (alt && alt !== 'undefined') {
+          fallback.textContent = '📷 ' + (alt.substring(0, 50) || 'Afbeelding niet beschikbaar');
+        } else {
+          fallback.textContent = '📷 Afbeelding niet beschikbaar';
         }
+        
+        this.parentNode.insertBefore(fallback, this.nextSibling);
+      });
+      
+      if (!img.complete && !img.naturalWidth) {
+        img.setAttribute('loading', 'lazy');
       }
-      node.textContent = address;
-      node.removeAttribute('data-email-user');
-      node.removeAttribute('data-email-domain');
-      node.removeAttribute('data-email-tld');
     });
   }
-
-  function initEmailProtection() {
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', hydrateEmailAddresses, { once: true });
-    } else {
-      hydrateEmailAddresses();
+  
+  function checkReducedMotion() {
+    return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  }
+  
+  function initSmoothScrollFallback() {
+    if (checkReducedMotion()) {
+      document.documentElement.style.scrollBehavior = 'auto';
     }
   }
-
+  
+  function sanitizeHTML(str) {
+    var temp = document.createElement('div');
+    temp.textContent = str;
+    return temp.innerHTML;
+  }
+  
+  function escapeSelector(selector) {
+    return selector.replace(/[!"#$%&'()*+,.\/:;<=>?@[\\\]^`{|}~]/g, '\\$&');
+  }
+  
+  initImageErrorHandling();
+  initOfflineDetection();
   initEmailProtection();
-
-  function initBackToTop() {
-    const setup = () => {
-      const button = document.querySelector('[data-back-to-top]');
-      if (!button) {
-        return;
-      }
-
-      const toggleVisibility = () => {
-        if (window.scrollY > 320) {
-          button.classList.add('is-visible');
-        } else {
-          button.classList.remove('is-visible');
-        }
-      };
-
-      button.addEventListener('click', (event) => {
-        event.preventDefault();
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      });
-
-      window.addEventListener('scroll', toggleVisibility, { passive: true });
-      toggleVisibility();
-    };
-
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', setup, { once: true });
-    } else {
-      setup();
-    }
-  }
-
   initBackToTop();
 
   window.siteHeader = function siteHeader(currentPage) {
@@ -416,4 +336,15 @@
     };
   };
 
+  function initButtonDebounce() {
+    document.addEventListener('click', function(e) {
+      const btn = e.target.closest('.btn[disabled], button[disabled]');
+      if (btn && !btn.classList.contains('allow-double')) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
+    }, true);
+  }
+
+  initButtonDebounce();
 })();

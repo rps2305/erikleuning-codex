@@ -50,7 +50,7 @@
           height="128"
           loading="lazy"
           decoding="async"
-          alt="Home" />
+          alt="Erik Leuning - Terug naar home" />
       </picture>
       <span class="brand-stack">
         <span class="site-brand__title">Erik Leuning</span>
@@ -192,17 +192,16 @@
           height="120"
           loading="lazy"
           decoding="async"
-          alt="Erik Leuning logo" />
+          alt="Erik Leuning - Begeleiding en Ondersteuning" />
       </picture>
       <div>
         <p class="site-footer__eyebrow">Erik Leuning</p>
-        <p class="site-footer__lead">VAN KWETSBAARHEID NAAR ZELFREDZAAMHEID/ZELFSTANDIGHEID!</p>
-        <p>Staat voor individuele begeleiding van een specifieke hulpvraag; over het algemeen in de eigen omgeving. Begeleiding vanuit PGB en ZIN en particulier; ook in te huren door instellingen.</p>
+        <p>Begeleiding en ondersteuning in Twente, met nadruk op zelfstandigheid in de vertrouwde omgeving.</p>
       </div>
     </div>
     <div class="site-footer__grid">
       <div>
-        <h3>Snelle navigatie</h3>
+        <h3>Navigatie</h3>
         <nav aria-label="Footer" class="site-footer__nav">
           <a href="./#welkom">Welkom</a>
           <a href="./#begeleiding">Begeleiding</a>
@@ -216,16 +215,16 @@
         </nav>
       </div>
       <div>
-        <h3>Bereikbaarheid</h3>
+        <h3>Contact</h3>
         <ul class="site-footer__list">
-          <li><a class="focus-ring email-link" data-email-user="erik" data-email-domain="erikleuning" data-email-tld="nl" href="mailto:erik@erikleuning.nl">E-mail Erik</a></li>
+          <li><a class="focus-ring email-link" data-email-user="erik" data-email-domain="erikleuning" data-email-tld="nl" href="mailto:erik@erikleuning.nl">erik@erikleuning.nl</a></li>
           <li><a href="tel:+31630516464" class="focus-ring">06-30516464</a></li>
           <li><a href="https://www.linkedin.com/in/erik-leuning-376558aa/?originalSubdomain=nl" class="focus-ring">LinkedIn</a></li>
         </ul>
       </div>
       <div>
-        <h3>Werkgebied</h3>
-        <p>Begeleiding binnen een straal van circa 50 km rondom Oldenzaal en de 14 Twentse gemeenten.</p>
+        <h3>Samenwerking</h3>
+        <p>Lid van Coöperatie Zorgondernemers Twente.</p>
         <a href="https://zorgondernemers-twente.nl" target="_blank" rel="noopener" class="partner-link focus-ring partner-margin-top">
           <picture>
             <img
@@ -234,23 +233,23 @@
               height="48"
               loading="lazy"
               decoding="async"
-              alt="logo Coöperatie Zorgondernemers Twente" />
+              alt="Coöperatie Zorgondernemers Twente" />
           </picture>
-          <span>Coöperatie Zorgondernemers Twente</span>
+          <span>Meer informatie</span>
         </a>
       </div>
     </div>
     <section class="site-footer__accessibility" aria-labelledby="footer-accessibility">
       <h3 id="footer-accessibility">Toegankelijkheid</h3>
-      <p>Ik volg de WCAG&nbsp;2.1 AA-richtlijnen om deze site voor iedereen bruikbaar te maken. Signaleert u toch een toegankelijkheidsprobleem? Mail <a class="focus-ring email-link" data-email-user="erik" data-email-domain="erikleuning" data-email-tld="nl" href="mailto:erik@erikleuning.nl">E-mail Erik</a> of bel <a href="tel:+31630516464" class="focus-ring">06-30516464</a>.</p>
+      <p>Deze site volgt de WCAG 2.1 AA-richtlijnen. Loop je tegen een probleem aan? <a class="focus-ring email-link" data-email-user="erik" data-email-domain="erikleuning" data-email-tld="nl" href="mailto:erik@erikleuning.nl">Mail</a> of bel <a href="tel:+31630516464" class="focus-ring">06-30516464</a>.</p>
     </section>
   </div>
   <div class="site-footer__bottom">
     <p>© 2026 Erik Leuning – Begeleiding en Ondersteuning</p>
     <div>
-      <a class="focus-ring email-link" data-email-user="erik" data-email-domain="erikleuning" data-email-tld="nl" href="mailto:erik@erikleuning.nl">E-mail Erik</a>
+      <a href="privacyverklaring.html" class="focus-ring">Privacyverklaring</a>
       <span aria-hidden="true">·</span>
-      <a href="privacyverklaring.html" class="focus-ring">Privacyverklaring &amp; disclaimer</a>
+      <a href="privacyverklaring.html" class="focus-ring">Disclaimer</a>
     </div>
   </div>
 </footer>
@@ -263,18 +262,18 @@
 <div x-data="cookieBanner()" x-cloak x-show="open" x-transition.opacity.duration.200ms class="cookie-banner" role="dialog" aria-live="polite" aria-label="Cookie melding" aria-describedby="cookie-banner-description">
   <div class="cookie-banner__inner">
     <div class="cookie-banner__content">
-      <p id="cookie-banner-description">Deze site gebruikt functionele cookies. Analytics is optioneel en wordt pas geladen na toestemming.</p>
+      <p id="cookie-banner-description">Deze website gebruikt alleen functionele cookies die nodig zijn voor de werking. Wil je helpen de site te verbeteren met anonieme statistieken?</p>
       <div class="cookie-preferences" id="cookie-preferences" x-show="showPrefs">
         <label class="cookie-toggle">
-          <input type="checkbox" x-model="analyticsEnabled" />
-          <span>Analytics cookies toestaan</span>
+          <input type="checkbox" x-model="analyticsEnabled" id="analytics-checkbox" />
+          <span for="analytics-checkbox">Statistieken toestaan</span>
         </label>
-        <p class="cookie-hint">Alleen geanonimiseerde bezoekersstatistieken.</p>
+        <p class="cookie-hint">Geanonimiseerde gegevens om de website te verbeteren.</p>
       </div>
     </div>
     <div class="cookie-actions">
-      <button type="button" class="btn" @click="accept">Accepteren</button>
-      <button type="button" class="cookie-decline focus-ring" @click="decline">Weigeren</button>
+      <button type="button" class="btn" @click="accept">Ja, graag</button>
+      <button type="button" class="cookie-decline focus-ring" @click="decline">Nee, bedankt</button>
       <button type="button" class="cookie-decline focus-ring" @click="togglePrefs" :aria-expanded="showPrefs" aria-controls="cookie-preferences">Voorkeuren</button>
     </div>
   </div>
