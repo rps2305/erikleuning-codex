@@ -984,7 +984,8 @@ p{
   transition:opacity .2s ease,transform .2s ease
 }
 
-.back-to-top.is-visible{
+.back-to-top.is-visible,
+.back-to-top.visible{
   opacity:1;
   transform:translateY(0);
   pointer-events:auto

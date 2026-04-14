@@ -92,6 +92,36 @@
     return selector.replace(/[!"#$%&'()*+,.\/:;<=>?@[\\\]^`{|}~]/g, '\\$&');
   }
   
+  function initEmailProtection() {
+    document.querySelectorAll('.email-link').forEach(function(link) {
+      link.addEventListener('click', function(e) {
+        var user = this.getAttribute('data-email-user');
+        var domain = this.getAttribute('data-email-domain');
+        var tld = this.getAttribute('data-email-tld') || 'nl';
+        if (user && domain) {
+          this.href = 'mailto:' + user + '@' + domain + '.' + tld;
+        }
+      });
+    });
+  }
+  
+  function initBackToTop() {
+    var btn = document.querySelector('[data-back-to-top]');
+    if (!btn) return;
+    
+    window.addEventListener('scroll', function() {
+      if (window.scrollY > 400) {
+        btn.classList.add('visible');
+      } else {
+        btn.classList.remove('visible');
+      }
+    }, { passive: true });
+    
+    btn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+  
   initImageErrorHandling();
   initOfflineDetection();
   initEmailProtection();
