@@ -565,6 +565,199 @@ p{
   transform:translateY(-2px);
 }
 
+/* Kwaliteiten panel - left accent */
+.feature-panel--qualities{
+  background:linear-gradient(135deg,var(--surface) 0%,rgba(8,145,178,0.04) 100%);
+  border-inline-start:4px solid var(--accent);
+}
+
+.feature-panel--qualities>h2{
+  color:var(--accent-dark);
+}
+
+/* Eigenschappen panel - subtle pattern */
+.feature-panel--traits{
+  background:var(--surface);
+  position:relative;
+  overflow:hidden;
+}
+
+.feature-panel--traits::before{
+  content:'';
+  position:absolute;
+  top:0;
+  right:0;
+  width:120px;
+  height:120px;
+  background:radial-gradient(circle at 100% 0%,var(--accent-soft) 0%,transparent 70%);
+  pointer-events:none;
+}
+
+.feature-panel--traits>h2{
+  color:var(--text);
+}
+
+/* Feature items with icons */
+.feature-item{
+  display:flex;
+  align-items:flex-start;
+  gap:0.875rem;
+}
+
+.feature-item__icon{
+  flex-shrink:0;
+  width:2.5rem;
+  height:2.5rem;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:var(--accent-soft);
+  border-radius:0.625rem;
+  color:var(--accent);
+}
+
+.feature-item__content{
+  flex:1;
+  min-width:0;
+}
+
+.feature-item__content h3{
+  margin-bottom:0.25rem;
+  font-size:clamp(1rem,0.9rem + 0.3vw,1.1rem);
+  font-weight:600;
+  min-width:0;
+  overflow-wrap:break-word;
+  word-break:break-word;
+}
+
+.feature-item__content p{
+  margin:0;
+  font-size:0.9rem;
+  line-height:1.5;
+  min-width:0;
+  overflow-wrap:break-word;
+  word-break:break-word;
+  color:var(--text-muted);
+}
+
+/* Contact highlight card */
+.contact-highlight{
+  background:linear-gradient(135deg,var(--accent) 0%,var(--accent-dark) 100%);
+  border-radius:1.5rem;
+  padding:clamp(2rem,1.5rem + 1.5vw,3rem);
+  color:var(--text-inverse);
+  text-align:center;
+  position:relative;
+  overflow:hidden;
+}
+
+.contact-highlight::before{
+  content:'';
+  position:absolute;
+  top:-50%;
+  right:-20%;
+  width:300px;
+  height:300px;
+  background:radial-gradient(circle,rgba(255,255,255,0.15) 0%,transparent 60%);
+  pointer-events:none;
+}
+
+.contact-highlight__icon{
+  width:4rem;
+  height:4rem;
+  margin:0 auto 1.25rem;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:rgba(255,255,255,0.2);
+  border-radius:50%;
+  color:#fff;
+}
+
+.contact-highlight h3{
+  color:var(--text-inverse);
+  font-size:clamp(1.5rem,1.2rem + 1vw,2rem);
+  margin-bottom:0.75rem;
+}
+
+.contact-highlight p{
+  color:rgba(255,255,255,0.9);
+  max-width:45ch;
+  margin:0 auto 1.5rem;
+  font-size:1.05rem;
+}
+
+.contact-highlight__phone{
+  display:inline-flex;
+  align-items:center;
+  gap:0.75rem;
+  font-size:clamp(1.5rem,1.2rem + 1.5vw,2.25rem);
+  font-weight:700;
+  color:#fff;
+  text-decoration:none;
+  padding:1rem 2rem;
+  background:rgba(255,255,255,0.2);
+  border-radius:9999px;
+  border:2px solid rgba(255,255,255,0.4);
+  transition:all 0.2s ease;
+  backdrop-filter:blur(4px);
+}
+
+.contact-highlight__phone:hover{
+  background:rgba(255,255,255,0.3);
+  border-color:rgba(255,255,255,0.6);
+  transform:scale(1.02);
+}
+
+.contact-highlight__phone svg{
+  width:1.5em;
+  height:1.5em;
+}
+
+.dark .contact-highlight{
+  background:linear-gradient(135deg,#14b8a6 0%,#0d9488 100%);
+}
+
+.dark .contact-highlight__icon{
+  background:rgba(255,255,255,0.15);
+}
+
+/* Contact details section */
+.contact-details{
+  margin-top:2rem;
+  padding:1.5rem;
+  background:var(--surface);
+  border-radius:1rem;
+  border:1px solid var(--border);
+}
+
+.contact-details p{
+  margin:0 0 0.75rem;
+  max-width:none;
+}
+
+.contact-details p:last-child{
+  margin-bottom:0;
+}
+
+.contact-details a{
+  font-weight:600;
+}
+
+/* Override feature-grid li styles when using feature-item */
+.feature-grid:has(.feature-item) li{
+  background:transparent;
+  border:none;
+  padding:0;
+}
+
+.feature-grid:has(.feature-item) li:hover,
+.feature-grid:has(.feature-item) li:focus-within{
+  transform:none;
+  box-shadow:none;
+  border-color:var(--border);
+}
+
 /* ============================================
    FOOTER
    ============================================ */
