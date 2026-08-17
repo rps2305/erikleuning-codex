@@ -290,7 +290,7 @@ p{
   display:none
 }
 
-@media (min-width:1024px){
+@media (min-width:1070px){
   .primary-nav{display:flex}
 }
 
@@ -335,7 +335,7 @@ p{
   flex-shrink:0
 }
 
-@media (min-width:1024px){
+@media (min-width:1070px){
   .mobile-toggle{display:none}
 }
 
