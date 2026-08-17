@@ -163,16 +163,6 @@
         border: 1px solid rgba(8, 145, 178, 0.15);
       }
 
-      .hero {
-        contain: layout style;
-      }
-
-      /* Content-visibility for off-screen sections */
-      .page-section {
-        content-visibility: auto;
-        contain-intrinsic-size: 0 600px;
-      }
-
       .feature-sections {
         display: grid;
         gap: clamp(1.5rem, 1rem + 1vw, 2rem);
@@ -212,7 +202,6 @@
         background: var(--surface);
         border-radius: .75rem;
         padding: 1rem 1.25rem;
-        transition: all 0.2s ease;
         border: 1px solid var(--border);
       }
 
@@ -228,7 +217,6 @@
         font-size: clamp(1rem, 0.9rem + 0.3vw, 1.1rem);
         min-width: 0;
         overflow-wrap: break-word;
-        word-break: break-word;
       }
 
       .feature-grid p {
@@ -237,7 +225,6 @@
         line-height: 1.5;
         min-width: 0;
         overflow-wrap: break-word;
-        word-break: break-word;
         color: var(--text-muted);
       }
       
