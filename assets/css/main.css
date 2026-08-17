@@ -879,6 +879,17 @@ p{
   gap:.5rem
 }
 
+.desktop-theme-toggle{
+  background:none;
+  border:none;
+  cursor:pointer;
+  font:inherit;
+  margin:0;
+  padding:0;
+  line-height:normal;
+  -webkit-appearance:none
+}
+
 .desktop-theme-toggle svg{
   width:1.25rem;
   height:1.25rem
