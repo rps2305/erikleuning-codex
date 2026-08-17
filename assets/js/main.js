@@ -15,6 +15,105 @@
     { id: 'werkgebied', label: 'Werkgebied', href: '#werkgebied' },
     { id: 'contact', label: 'Contact', href: '#contact' }
   ];
+
+  function prefersDark() {
+    return (
+      typeof window.matchMedia === 'function' &&
+      window.matchMedia('(prefers-color-scheme: dark)').matches
+    );
+  }
+
+  function readStoredTheme() {
+    try {
+      const stored = window.localStorage.getItem(THEME_STORAGE_KEY);
+      if (stored === null) {
+        return prefersDark();
+      }
+      return stored === 'dark';
+    } catch (error) {
+      return prefersDark();
+    }
+  }
+
+  function writeStoredTheme(isDark) {
+    try {
+      window.localStorage.setItem(THEME_STORAGE_KEY, isDark ? 'dark' : 'light');
+    } catch (error) {
+      // Ignore storage errors (e.g. private browsing)
+    }
+  }
+
+  function applyTheme(isDark) {
+    document.documentElement.classList.toggle('dark', isDark);
+    if (isDark) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    } else {
+      document.documentElement.removeAttribute('data-theme');
+    }
+  }
+
+  function canStore() {
+    try {
+      const key = '__consent_test__';
+      window.localStorage.setItem(key, '1');
+      window.localStorage.removeItem(key);
+      return true;
+    } catch (error) {
+      return false;
+    }
+  }
+
+  function readStoredConsent() {
+    try {
+      const raw = window.localStorage.getItem(CONSENT_STORAGE_KEY);
+      if (!raw) {
+        return null;
+      }
+      const data = JSON.parse(raw);
+      if (!data || !data.state || !data.timestamp) {
+        return null;
+      }
+      if (Date.now() - data.timestamp > CONSENT_TTL_MS) {
+        window.localStorage.removeItem(CONSENT_STORAGE_KEY);
+        return null;
+      }
+      return data.state;
+    } catch (error) {
+      return null;
+    }
+  }
+
+  function writeStoredConsent(value) {
+    try {
+      window.localStorage.setItem(
+        CONSENT_STORAGE_KEY,
+        JSON.stringify({ state: value, timestamp: Date.now() })
+      );
+    } catch (error) {
+      // Ignore storage errors
+    }
+  }
+
+  function loadAnalytics() {
+    try {
+      if (window.gtag && document.querySelector('script[data-analytics]')) {
+        return;
+      }
+      const script = document.createElement('script');
+      script.async = true;
+      script.src = 'https://www.googletagmanager.com/gtag/js?id=' + encodeURIComponent(ANALYTICS_ID);
+      script.setAttribute('data-analytics', '');
+      document.head.appendChild(script);
+      window.dataLayer = window.dataLayer || [];
+      window.gtag = function () {
+        window.dataLayer.push(arguments);
+      };
+      window.gtag('js', new Date());
+      window.gtag('config', ANALYTICS_ID, { anonymize_ip: true });
+    } catch (error) {
+      // Analytics must never break the page
+    }
+  }
   
   function initImageErrorHandling() {
     if (document.readyState === 'loading') {
@@ -58,9 +157,9 @@
         
         var alt = this.getAttribute('alt');
         if (alt && alt !== 'undefined') {
-          fallback.textContent = '📷 ' + (alt.substring(0, 50) || 'Afbeelding niet beschikbaar');
+          fallback.textContent = alt.substring(0, 50) || 'Afbeelding niet beschikbaar';
         } else {
-          fallback.textContent = '📷 Afbeelding niet beschikbaar';
+          fallback.textContent = 'Afbeelding niet beschikbaar';
         }
         
         this.parentNode.insertBefore(fallback, this.nextSibling);
@@ -80,16 +179,6 @@
     if (checkReducedMotion()) {
       document.documentElement.style.scrollBehavior = 'auto';
     }
-  }
-  
-  function sanitizeHTML(str) {
-    var temp = document.createElement('div');
-    temp.textContent = str;
-    return temp.innerHTML;
-  }
-  
-  function escapeSelector(selector) {
-    return selector.replace(/[!"#$%&'()*+,.\/:;<=>?@[\\\]^`{|}~]/g, '\\$&');
   }
   
   function initEmailProtection() {
@@ -118,7 +207,7 @@
     }, { passive: true });
     
     btn.addEventListener('click', function() {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      window.scrollTo({ top: 0, behavior: checkReducedMotion() ? 'auto' : 'smooth' });
     });
   }
   
@@ -262,8 +351,6 @@
 
         this.sectionsList.forEach((section) => observer.observe(section));
         this.sectionObserver = observer;
-        this.updateFromScroll = fallbackUpdate;
-        window.addEventListener('scroll', fallbackUpdate, { passive: true });
         fallbackUpdate();
       },
       currentFor(item) {
@@ -284,7 +371,7 @@
           event.preventDefault();
           const target = document.querySelector(item.href);
           if (target) {
-            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            target.scrollIntoView({ behavior: checkReducedMotion() ? 'auto' : 'smooth', block: 'start' });
           }
           this.closeMenu();
         } else {
@@ -314,6 +401,11 @@
       analyticsEnabled: false,
       lastFocused: null,
       init() {
+        this.$watch('open', (value) => {
+          document.querySelectorAll('main, footer, header, [data-back-to-top]').forEach((el) => {
+            el.inert = value;
+          });
+        });
         if (!canStore()) {
           this.open = false;
           this.analyticsEnabled = false;
@@ -362,6 +454,26 @@
         this.open = false;
         this.showPrefs = false;
         this.lastFocused?.focus?.();
+      },
+      close() {
+        if (!this.open) return;
+        this.open = false;
+        this.showPrefs = false;
+        this.lastFocused?.focus?.();
+      },
+      trapCookieFocus(event) {
+        if (!this.open || event.key !== 'Tab') return;
+        const focusable = Array.from(this.$el.querySelectorAll('a, button, input, [tabindex]:not([tabindex="-1"])'));
+        if (!focusable.length) return;
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+        if (event.shiftKey && document.activeElement === first) {
+          event.preventDefault();
+          last.focus();
+        } else if (!event.shiftKey && document.activeElement === last) {
+          event.preventDefault();
+          first.focus();
+        }
       }
     };
   };

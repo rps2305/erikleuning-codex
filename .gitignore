@@ -20,3 +20,10 @@ build/
 
 # Env files
 .env*
+
+# Source images (not deployed)
+images/src/
+images/*-source.*
+
+# Codex session logs
+.codex/

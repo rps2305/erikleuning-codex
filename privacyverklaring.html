@@ -3,6 +3,8 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f1f5f9" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#020617" media="(prefers-color-scheme: dark)" />
     <title>Privacyverklaring | Erik Leuning</title>
     <meta name="description" content="Lees hoe Erik Leuning – Begeleiding en Ondersteuning omgaat met persoonsgegevens, bewaartermijnen en beveiliging." />
     <link rel="canonical" href="https://www.erikleuning.nl/privacyverklaring.html" />
@@ -25,6 +27,10 @@
     <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png" />
     <link rel="shortcut icon" href="favicon.ico" />
     <link rel="manifest" href="site.webmanifest" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..900;1,9..144,400..900&family=Source+Sans+3:wght@300..900&display=swap" rel="stylesheet" />
+    <link rel="preload" href="images/privacy-hero-1024.webp" as="image" fetchpriority="high" type="image/webp" />
     <link rel="preload" href="assets/css/main.css" as="style" />
     <link rel="stylesheet" href="assets/css/main.css" />
     <script>
@@ -133,7 +139,8 @@
               sizes="(max-width: 960px) 100vw, 480px"
               width="1024"
               height="684"
-              loading="lazy"
+              loading="eager"
+              fetchpriority="high"
               decoding="async"
               alt="Laptop en notitieblok op tafel" />
           </picture>
@@ -266,7 +273,7 @@
       <div class="cookie-preferences" id="cookie-preferences" x-show="showPrefs">
         <label class="cookie-toggle">
           <input type="checkbox" x-model="analyticsEnabled" id="analytics-checkbox" />
-          <span for="analytics-checkbox">Statistieken toestaan</span>
+          <span>Statistieken toestaan</span>
         </label>
         <p class="cookie-hint">Geanonimiseerde gegevens om de website te verbeteren.</p>
       </div>
@@ -280,7 +287,7 @@
 </div>
 
     <script src="assets/js/main.js" defer></script>
-    <script src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+    <script src="assets/js/alpine.min.js" defer integrity="sha384-9Ax3MmS9AClxJyd5/zafcXXjxmwFhZCdsT6HJoJjarvCaAkJlk5QDzjLJm+Wdx5F" crossorigin="anonymous"></script>
     <script type="application/ld+json">
       {
   "@context": "https://schema.org",
