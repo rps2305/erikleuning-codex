@@ -27,3 +27,6 @@ images/*-source.*
 
 # Codex session logs
 .codex/
+
+# Audit reports
+seo-report-*.md
